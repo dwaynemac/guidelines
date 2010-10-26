@@ -70,6 +70,34 @@ module ActiveRecord
           nodes
         end
 
+        def ancestors_and_self
+          (ancestors.reverse + [self]).flatten
+        end
+
+        # from: http://github.com/parndt/acts_as_tree/blob/master/lib/active_record/acts/tree.rb
+        # Returns a flat list of the descendants of the current node.
+        #
+        # root.descendants # => [child1, subchild1, subchild2]
+        def descendants(node=self)
+          nodes = []
+          nodes << node unless node == self
+
+          node.children.each do |child|
+            nodes += descendants(child)
+          end
+
+          nodes.compact
+        end
+
+        def self_and_descendants
+          return [self,self.descendants].flatten
+        end
+
+        def chain
+          [self.ancestors, self, self.descendants].flatten
+        end
+
+
         # Returns the root node of the tree.
         def root
           node = self

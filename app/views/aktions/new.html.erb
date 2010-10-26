@@ -1,0 +1,14 @@
+<h1><%= t('actions.new.title') %></h1>
+
+<%- if params[:goal_id]
+      scope = [:goal, @action]
+    else
+      scope = @action
+    end -%>
+
+<%- semantic_form_for scope do |f| -%>
+  <%= f.inputs :what, :how, :why, :where, :who, :begins_on, :ends_on -%>
+  <%- f.buttons do -%>
+    <%= f.commit_button %>
+  <%- end -%>
+<%- end -%>

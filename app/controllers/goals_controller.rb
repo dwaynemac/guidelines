@@ -1,0 +1,100 @@
+class GoalsController < ApplicationController
+
+  before_filter :set_scope
+
+  # GET /goals
+  # GET /goals.xml
+  def index
+    @goals = @scope.all
+
+    # TODO for larger databases id_number, should be cached on DB for faster sorting?
+    @goals.sort!{|a,b| a.id_number <=> b.id_number}
+
+    respond_to do |format|
+      format.html # index.html.erb
+      format.xml  { render :xml => @goals }
+    end
+  end
+
+  # GET /goals/1
+  # GET /goals/1.xml
+  def show
+    @goal = Goal.find(params[:id])
+
+    respond_to do |format|
+      format.html # show.html.erb
+      format.xml  { render :xml => @goal }
+    end
+  end
+
+  # GET /goals/new
+  # GET /goals/new.xml
+  def new
+    @goal = @scope.build
+
+    respond_to do |format|
+      format.html # new.html.erb
+      format.xml  { render :xml => @goal }
+    end
+  end
+
+  # GET /goals/1/edit
+  def edit
+    @goal = Goal.find(params[:id])
+    @goals = Goal.all
+    @goals.sort!{|a,b| a.id_number <=> b.id_number}
+  end
+
+  # POST /goals
+  # POST /goals.xml
+  def create
+    @goal = Goal.new(params[:goal])
+
+    respond_to do |format|
+      if @goal.save
+        format.html { redirect_to(@goal, :notice => 'Goal was successfully created.') }
+        format.xml  { render :xml => @goal, :status => :created, :location => @goal }
+      else
+        format.html { render :action => "new" }
+        format.xml  { render :xml => @goal.errors, :status => :unprocessable_entity }
+      end
+    end
+  end
+
+  # PUT /goals/1
+  # PUT /goals/1.xml
+  def update
+    @goal = Goal.find(params[:id])
+
+    respond_to do |format|
+      if @goal.update_attributes(params[:goal])
+        format.html { redirect_to(@goal, :notice => 'Goal was successfully updated.') }
+        format.xml  { head :ok }
+      else
+        format.html { render :action => "edit" }
+        format.xml  { render :xml => @goal.errors, :status => :unprocessable_entity }
+      end
+    end
+  end
+
+  # DELETE /goals/1
+  # DELETE /goals/1.xml
+  def destroy
+    @goal = Goal.find(params[:id])
+    @goal.destroy
+
+    respond_to do |format|
+      format.html { redirect_to(goals_url) }
+      format.xml  { head :ok }
+    end
+  end
+
+  private
+  def set_scope
+    if params[:goal_id]
+      @scope = Goal.find(params[:goal_id]).goals
+    else
+      @scope = Goal.placebo
+    end
+  end
+end

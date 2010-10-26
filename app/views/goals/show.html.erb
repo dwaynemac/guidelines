@@ -1,0 +1,26 @@
+<h1><%= @goal.id_number %> - <%=h @goal.objective %></h1>
+
+<%= @goal.control_item %> = <%= @goal.value %> @ <%=l @goal.due_on %><br>
+
+<%= t('goal.labels.responsable') %>: <%= h @goal.responsable.try(:name) %>
+
+<%- unless @goal.descendants.empty? -%>
+  <%= render :partial => 'table', :locals => {:goals => @goal.descendants } %>
+<%- end -%>
+
+<%- unless @goal.aktions.empty? -%>
+  <%= render :partial => 'aktions/table', :locals => {:aktions => @goal.aktions} %>
+<%- end -%>
+
+<div>
+  <%= link_to( t('goals.add_action'), new_goal_aktion_path(@goal) ) if @goal.goals.empty? %>
+</div>
+
+<div>
+  <%= link_to(t('goals.add_subgoal'), new_goal_goal_path(:goal_id => @goal))  if @goal.aktions.empty? %>
+</div>
+
+<div>
+  <%= link_to t('Edit'), edit_goal_path(@goal) %> |
+  <%= link_to t('Back'), goals_path %>
+</div>

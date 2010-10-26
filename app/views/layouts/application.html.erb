@@ -12,6 +12,9 @@
 <body>
   <%= drc_top_bar(logout_url) %>
   <div id="container">
+    <div id="navbar">
+      <%= link_to(t('navbar.goals'), goals_url) %>
+    </div>
     <%= yield %>
   </div>
 </body>

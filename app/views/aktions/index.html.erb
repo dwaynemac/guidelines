@@ -1,0 +1,34 @@
+<h1>Listing actions</h1>
+
+<table>
+  <tr>
+    <th>Goal</th>
+    <th>What</th>
+    <th>How</th>
+    <th>Why</th>
+    <th>Where</th>
+    <th>Who</th>
+    <th>Begins on</th>
+    <th>Ends on</th>
+  </tr>
+
+<% @actions.each do |action| %>
+  <tr>
+    <td><%=h action.goal_id %></td>
+    <td><%=h action.what %></td>
+    <td><%=h action.how %></td>
+    <td><%=h action.why %></td>
+    <td><%=h action.where %></td>
+    <td><%=h action.who_id %></td>
+    <td><%=h action.begins_on %></td>
+    <td><%=h action.ends_on %></td>
+    <td><%= link_to 'Show', action %></td>
+    <td><%= link_to 'Edit', edit_action_path(action) %></td>
+    <td><%= link_to 'Destroy', action, :confirm => 'Are you sure?', :method => :delete %></td>
+  </tr>
+<% end %>
+</table>
+
+<br />
+
+<%= link_to 'New action', new_action_path %>

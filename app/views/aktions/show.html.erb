@@ -1,0 +1,43 @@
+<p>
+  <b>Goal:</b>
+  <%=h @action.goal_id %>
+</p>
+
+<p>
+  <b>What:</b>
+  <%=h @action.what %>
+</p>
+
+<p>
+  <b>How:</b>
+  <%=h @action.how %>
+</p>
+
+<p>
+  <b>Why:</b>
+  <%=h @action.why %>
+</p>
+
+<p>
+  <b>Where:</b>
+  <%=h @action.where %>
+</p>
+
+<p>
+  <b>Who:</b>
+  <%=h @action.who_id %>
+</p>
+
+<p>
+  <b>Begins on:</b>
+  <%=h @action.begins_on %>
+</p>
+
+<p>
+  <b>Ends on:</b>
+  <%=h @action.ends_on %>
+</p>
+
+
+<%= link_to 'Edit', edit_action_path(@action) %> |
+<%= link_to 'Back', actions_path %>

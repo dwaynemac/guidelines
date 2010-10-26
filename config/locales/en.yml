@@ -8,3 +8,26 @@ en:
     no_local_user: "You dont have a user on this application."
     not_you_logout: "If this DeRose Connection is not yours <a href={{logout_url}}>logout</a>."
 
+  action:
+    labels:
+      what: "what"
+      how: "how"
+      why: "why"
+      where: "where"
+      who: "who"
+      when: "when"
+  edit: "edit"
+  actions:
+    action_plan: "Action plan"
+  confirm_destroy: "Are you sure?"
+  destroy: "destroy"
+  Back: "back"
+  Edit: "edit"
+  goals:
+    add_subgoal: "Add sub-goal"
+    add_action: "Add action to action plan"
+  goal:
+    labels:
+      responsable: "Responsable"
+  navbar:
+    goals: "Goals"

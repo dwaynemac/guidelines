@@ -1,0 +1,44 @@
+<h1>Editing action</h1>
+
+<% form_for(@action) do |f| %>
+  <%= f.error_messages %>
+
+  <p>
+    <%= f.label :goal_id %><br />
+    <%= f.text_field :goal_id %>
+  </p>
+  <p>
+    <%= f.label :what %><br />
+    <%= f.text_field :what %>
+  </p>
+  <p>
+    <%= f.label :how %><br />
+    <%= f.text_field :how %>
+  </p>
+  <p>
+    <%= f.label :why %><br />
+    <%= f.text_field :why %>
+  </p>
+  <p>
+    <%= f.label :where %><br />
+    <%= f.text_field :where %>
+  </p>
+  <p>
+    <%= f.label :who_id %><br />
+    <%= f.text_field :who_id %>
+  </p>
+  <p>
+    <%= f.label :begins_on %><br />
+    <%= f.date_select :begins_on %>
+  </p>
+  <p>
+    <%= f.label :ends_on %><br />
+    <%= f.date_select :ends_on %>
+  </p>
+  <p>
+    <%= f.submit 'Update' %>
+  </p>
+<% end %>
+
+<%= link_to 'Show', @action %> |
+<%= link_to 'Back', actions_path %>

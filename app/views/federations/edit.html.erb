@@ -1,0 +1,16 @@
+<h1>Editing federation</h1>
+
+<% form_for(@federation) do |f| %>
+  <%= f.error_messages %>
+
+  <p>
+    <%= f.label :name %><br />
+    <%= f.text_field :name %>
+  </p>
+  <p>
+    <%= f.submit 'Update' %>
+  </p>
+<% end %>
+
+<%= link_to 'Show', @federation %> |
+<%= link_to 'Back', federations_path %>

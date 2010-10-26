@@ -1,0 +1,25 @@
+<h1><%= t('actions.action_plan') %></h1>
+<table>
+  <tr>
+    <th><%= t('action.labels.what') %></th>
+    <th><%= t('action.labels.how') %></th>
+    <th><%= t('action.labels.why') %></th>
+    <th><%= t('action.labels.where') %></th>
+    <th><%= t('action.labels.who') %></th>
+    <th><%= t('action.labels.when') %></th>
+  </tr>
+  <%- aktions.each do |aktion| -%>
+    <tr>
+      <td><%=h aktion.what %></td>
+      <td><%=h aktion.how %></td>
+      <td><%=h aktion.why %></td>
+      <td><%=h aktion.where %></td>
+      <td><%=h aktion.who.try(:name) %></td>
+      <td><%=l aktion.begins_on %> - <%=l aktion.ends_on %></td>
+      <td>
+        <%= link_to(t('edit'), edit_aktion_path(aktion)) %>
+        <%= link_to(t('destroy'), aktion, :method => :delete, :confirm => t('confirm_destroy')) %>
+      </td>
+    </tr>
+  <%- end -%>
+</table>

@@ -1,4 +1,10 @@
 ActionController::Routing::Routes.draw do |map|
+  map.resources :goals, :has_many => [:goals, :aktions]
+  map.resources :aktions
+
+  map.resources :federations
+  map.resources :people
+
   map.resources :oauth_consumers,:member=>{:callback=>:get}
 
   map.unauthorized '/unauthorized', :controller => :user_sessions, :action => :unauthorized

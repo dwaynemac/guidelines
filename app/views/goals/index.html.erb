@@ -1,0 +1,7 @@
+<h1>Listing goals</h1>
+
+<%= render :partial => 'table', :locals => { :goals => @goals } %>
+
+<br />
+
+<%= link_to 'New goal', new_goal_path %>

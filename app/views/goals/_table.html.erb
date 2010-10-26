@@ -1,0 +1,24 @@
+<table>
+  <tr>
+    <th></th>
+    <th>Objective</th>
+    <th>Value</th>
+    <th>Control item</th>
+    <th>Responsable</th>
+    <th>Due on</th>
+  </tr>
+
+  <% goals.each do |goal| %>
+    <tr>
+      <td><%= h goal.id_number %></td>
+      <td><%= h goal.objective %></td>
+      <td><%= h goal.value %></td>
+      <td><%= h goal.control_item %></td>
+      <td><%= h goal.responsable_id %></td>
+      <td><%= h goal.due_on %></td>
+      <td><%= link_to 'Show', goal %></td>
+      <td><%= link_to 'Edit', edit_goal_path(goal) %></td>
+      <td><%= link_to 'Destroy', goal, :confirm => 'Are you sure?', :method => :delete %></td>
+    </tr>
+  <% end %>
+</table>

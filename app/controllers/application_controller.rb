@@ -7,7 +7,6 @@ class ApplicationController < ActionController::Base
   before_filter DRCClient.filter
   before_filter :create_local_user_if_required
   before_filter :login_required
-  before_filter :authorization_required
 
   before_filter :set_locale
 

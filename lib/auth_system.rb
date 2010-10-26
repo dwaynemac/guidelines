@@ -20,6 +20,10 @@ module AuthSystem
     @current_user = current_user_session && current_user_session.record
   end
 
+  def current_institution
+    @current_institution = current_user.institution
+  end
+
   def login_required
     unless logged_in?
       redirect_to unauthorized_url

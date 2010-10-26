@@ -1,0 +1,21 @@
+# Read about fixtures at http://ar.rubyonrails.org/classes/Fixtures.html
+
+one:
+  goal_id: 1
+  what: MyString
+  how: MyString
+  why: MyString
+  where: MyString
+  who_id: 1
+  begins_on: 2010-10-26
+  ends_on: 2010-10-26
+
+two:
+  goal_id: 1
+  what: MyString
+  how: MyString
+  why: MyString
+  where: MyString
+  who_id: 1
+  begins_on: 2010-10-26
+  ends_on: 2010-10-26
