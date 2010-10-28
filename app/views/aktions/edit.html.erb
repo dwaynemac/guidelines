@@ -1,44 +1,20 @@
 <h1>Editing action</h1>
 
-<% form_for(@action) do |f| %>
-  <%= f.error_messages %>
+<%- if params[:goal_id]
+      scope = [:goal, @aktion]
+    else
+      scope = @aktion
+    end -%>
 
-  <p>
-    <%= f.label :goal_id %><br />
-    <%= f.text_field :goal_id %>
-  </p>
-  <p>
-    <%= f.label :what %><br />
-    <%= f.text_field :what %>
-  </p>
-  <p>
-    <%= f.label :how %><br />
-    <%= f.text_field :how %>
-  </p>
-  <p>
-    <%= f.label :why %><br />
-    <%= f.text_field :why %>
-  </p>
-  <p>
-    <%= f.label :where %><br />
-    <%= f.text_field :where %>
-  </p>
-  <p>
-    <%= f.label :who_id %><br />
-    <%= f.text_field :who_id %>
-  </p>
-  <p>
-    <%= f.label :begins_on %><br />
-    <%= f.date_select :begins_on %>
-  </p>
-  <p>
-    <%= f.label :ends_on %><br />
-    <%= f.date_select :ends_on %>
-  </p>
-  <p>
-    <%= f.submit 'Update' %>
-  </p>
-<% end %>
+<%- semantic_form_for scope do |f| -%>
+  <% f.inputs do  -%>
+    <%= f.input :who, :collection => @people %>
+    <%= f.inputs :what, :how, :why, :where, :begins_on, :ends_on %>
+  <%- end -%>
+  <%- f.buttons do -%>
+    <%= f.commit_button %>
+  <%- end -%>
+<%- end -%>
 
-<%= link_to 'Show', @action %> |
-<%= link_to 'Back', actions_path %>
+<%= link_to 'Show', @aktion %> |
+<%= link_to 'Back', aktions_path %>

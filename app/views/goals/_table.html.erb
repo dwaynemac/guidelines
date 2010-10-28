@@ -4,6 +4,7 @@
     <th>Objective</th>
     <th>Value</th>
     <th>Control item</th>
+    <th>Federation</th>
     <th>Responsable</th>
     <th>Due on</th>
   </tr>
@@ -14,7 +15,8 @@
       <td><%= h goal.objective %></td>
       <td><%= h goal.value %></td>
       <td><%= h goal.control_item %></td>
-      <td><%= h goal.responsable_id %></td>
+      <td><%=h goal.institution.try :name %></td>
+      <td><%= h goal.responsable.try :name %></td>
       <td><%= h goal.due_on %></td>
       <td><%= link_to(t('goal.add_followup'), new_goal_followup_path(:goal_id => goal)) %></td>
       <td><%= link_to t('Show'), goal %></td>

@@ -3,14 +3,15 @@
 <table>
   <tr>
     <th>Name</th>
+    <th>Institution</th>
   </tr>
 
 <% @people.each do |person| %>
   <tr>
     <td><%=h person.name %></td>
-    <td><%= link_to 'Show', person %></td>
-    <td><%= link_to 'Edit', edit_person_path(person) %></td>
-    <td><%= link_to 'Destroy', person, :confirm => 'Are you sure?', :method => :delete %></td>
+    <td><%=h person.institution.try :name %></td>
+    <td><%= link_to( 'Edit', edit_person_path(person)) if can? :update, person %></td>
+    <td><%= link_to( 'Destroy', person, :confirm => 'Are you sure?', :method => :delete) if can? :delete, person %></td>
   </tr>
 <% end %>
 </table>

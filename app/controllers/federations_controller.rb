@@ -1,4 +1,7 @@
 class FederationsController < ApplicationController
+
+  authorize_resource
+
   # GET /federations
   # GET /federations.xml
   def index

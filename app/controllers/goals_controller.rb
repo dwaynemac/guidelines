@@ -1,6 +1,7 @@
 class GoalsController < ApplicationController
-
   before_filter :set_scope
+  before_filter :get_goal, :except => [:index, :year_plan]
+  authorize_resource
 
   # GET /goals
   # GET /goals.xml
@@ -19,7 +20,6 @@ class GoalsController < ApplicationController
   # GET /goals/1
   # GET /goals/1.xml
   def show
-    @goal = Goal.find(params[:id])
 
     respond_to do |format|
       format.html # show.html.erb
@@ -40,7 +40,6 @@ class GoalsController < ApplicationController
 
   # GET /goals/1/edit
   def edit
-    @goal = Goal.find(params[:id])
     @goals = Goal.all - @goal.descendants - [@goal]
     @goals.sort!{|a,b| a.id_number <=> b.id_number}
   end
@@ -64,8 +63,6 @@ class GoalsController < ApplicationController
   # PUT /goals/1
   # PUT /goals/1.xml
   def update
-    @goal = Goal.find(params[:id])
-
     respond_to do |format|
       if @goal.update_attributes(params[:goal])
         format.html { redirect_to(@goal, :notice => 'Goal was successfully updated.') }
@@ -80,7 +77,6 @@ class GoalsController < ApplicationController
   # DELETE /goals/1
   # DELETE /goals/1.xml
   def destroy
-    @goal = Goal.find(params[:id])
     @goal.destroy
 
     respond_to do |format|
@@ -106,4 +102,9 @@ class GoalsController < ApplicationController
       @scope = Goal.placebo
     end
   end
+
+  def get_goal
+    @goal = @scope.find(params[:id])
+  end
+
 end

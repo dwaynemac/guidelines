@@ -1,6 +1,10 @@
 class AktionsController < ApplicationController
 
   before_filter :set_scope
+  before_filter :set_aktion, :except => :index
+
+  # resource needs to be loaded before this filter
+  authorize_resource
 
   # GET /aktions
   # GET /aktions.xml
@@ -16,8 +20,6 @@ class AktionsController < ApplicationController
   # GET /aktions/1
   # GET /aktions/1.xml
   def show
-    @aktion = @scope.find(params[:id])
-
     respond_to do |format|
       format.html # show.html.erb
       format.xml  { render :xml => @aktion }
@@ -27,8 +29,6 @@ class AktionsController < ApplicationController
   # GET /aktions/new
   # GET /aktions/new.xml
   def new
-    @aktion = @scope.build
-
     respond_to do |format|
       format.html # new.html.erb
       format.xml  { render :xml => @aktion }
@@ -37,14 +37,13 @@ class AktionsController < ApplicationController
 
   # GET /aktions/1/edit
   def edit
-    @aktion = @scope.find(params[:id])
+    institution = @aktion.goal.institution
+    @people = institution.nil?? Person.all : institution.people.all
   end
 
   # POST /aktions
   # POST /aktions.xml
   def create
-    @aktion = @scope.build(params[:aktion])
-
     respond_to do |format|
       if @aktion.save
         format.html { redirect_to(goal_url(:id => params[:goal_id]), :notice => 'aktion was successfully created.') }
@@ -59,8 +58,6 @@ class AktionsController < ApplicationController
   # PUT /aktions/1
   # PUT /aktions/1.xml
   def update
-    @aktion = @scope.find(params[:id])
-
     respond_to do |format|
       if @aktion.update_attributes(params[:aktion])
         format.html { redirect_to(goal_url(:id => params[:goal_id]), :notice => 'Action was successfully updated.') }
@@ -75,7 +72,6 @@ class AktionsController < ApplicationController
   # DELETE /aktions/1
   # DELETE /aktions/1.xml
   def destroy
-    @aktion = @scope.find(params[:id])
     @aktion.destroy
 
     respond_to do |format|
@@ -91,6 +87,14 @@ class AktionsController < ApplicationController
       @scope = @goal.aktions
     else
       @scope = Aktion
+    end
+  end
+
+  def set_aktion
+    if params[:action] == 'new' || params[:action] == 'create'
+      @aktion = @scope.build(params[:aktion])
+    else
+      @aktion = @scope.find(params[:id])
     end
   end
 end

@@ -17,8 +17,8 @@
       <td><%=h aktion.who.try(:name) %></td>
       <td><%=l aktion.begins_on %> - <%=l aktion.ends_on %></td>
       <td>
-        <%= link_to(t('edit'), edit_aktion_path(aktion)) %>
-        <%= link_to(t('destroy'), aktion, :method => :delete, :confirm => t('confirm_destroy')) %>
+        <%= link_to(t('edit'), edit_goal_aktion_path([@goal, aktion])) if can? :update, aktion %>
+        <%= link_to(t('destroy'), [@goal, aktion], :method => :delete, :confirm => t('confirm_destroy')) if can? :delete, aktion %>
       </td>
     </tr>
   <%- end -%>

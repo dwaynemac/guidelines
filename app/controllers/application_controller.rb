@@ -10,6 +10,11 @@ class ApplicationController < ActionController::Base
 
   before_filter :set_locale
 
+  rescue_from CanCan::AccessDenied do |exception|
+    flash[:notice] = exception.message
+    redirect_to root_url
+  end
+
   private
   def set_locale
     new_locale = params[:locale]

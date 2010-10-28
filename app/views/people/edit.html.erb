@@ -1,16 +1,11 @@
 <h1>Editing person</h1>
 
-<% form_for(@person) do |f| %>
-  <%= f.error_messages %>
-
-  <p>
-    <%= f.label :name %><br />
-    <%= f.text_field :name %>
-  </p>
-  <p>
-    <%= f.submit 'Update' %>
-  </p>
-<% end %>
+<%- semantic_form_for @person do |f| -%>
+  <%= f.inputs :name, :institution %>
+  <%- f.buttons do %>
+    <%= f.commit_button %>
+  <%- end -%>
+<%- end -%>
 
 <%= link_to 'Show', @person %> |
 <%= link_to 'Back', people_path %>

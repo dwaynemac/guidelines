@@ -8,6 +8,7 @@ class Goal < ActiveRecord::Base
 
   belongs_to :goal
   belongs_to :responsable, :class_name => "Person"
+  belongs_to :institution, :class_name => "Federation"
   
   has_many(:aktions)
   has_many(:goals)

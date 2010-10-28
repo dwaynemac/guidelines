@@ -1,11 +1,13 @@
 <table>
   <tr>
     <td><%= t('user.labels.drc_user') %></td>
+    <td><%= t('user.lables.role') %></td>
     <td><%= t('user.labels.intitution_name') %></td>
   </tr>
   <%- @users.each do |user| -%>
     <tr>
       <td><%= user.drc_user %></td>
+      <td><%= user.role %></td>
       <td><%= user.institution.try(:name) %></td>
       <td><%= link_to(t('edit'), edit_user_path(user)) %></td>
     </tr>

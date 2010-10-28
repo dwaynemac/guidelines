@@ -40,6 +40,9 @@ en:
     add_followup: "Register followup"
   navbar:
     goals: "Goals"
+    users: "Users"
+    institution: "Institutions"
+    people: "people"
   followups:
     new:
       title: "New followup"
@@ -49,3 +52,9 @@ en:
       success: "Followup was successfully updated."
   Show: "show"
   Destroy: "destroy"
+  user:
+    labels:
+      drc_user: "login"
+      intitution_name: "institution"
+    lables:
+      role: "role"

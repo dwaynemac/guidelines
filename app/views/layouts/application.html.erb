@@ -14,11 +14,18 @@
   <div id="container">
     <div id="navbar">
       <span>
-        <%= link_to(t('navbar.goals'), goals_url) %>
+        <%= link_to(t('navbar.goals'), goals_url) if can? :read, Goal %>
+        <%= link_to(t('navbar.users'), users_url) if can? :read, User %>
+        <%= link_to(t('navbar.institution'), federations_url) if can? :read, Federation %>
+        <%= link_to(t('navbar.people'), people_url) if can? :read, Person %>
       </span>
       <span style="float:right;">
+        <%= current_user.role || "-" %> |
         <%= current_institution.try(:name) %>
       </span>
+    </div>
+    <div id="notices">
+      <%= notice %>
     </div>
     <%= yield %>
   </div>
