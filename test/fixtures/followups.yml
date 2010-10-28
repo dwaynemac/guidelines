@@ -1,0 +1,11 @@
+# Read about fixtures at http://ar.rubyonrails.org/classes/Fixtures.html
+
+one:
+  value: 1
+  valid_on: 2010-10-27
+  goal_id: 1
+
+two:
+  value: 1
+  valid_on: 2010-10-27
+  goal_id: 1

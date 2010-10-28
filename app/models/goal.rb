@@ -11,6 +11,7 @@ class Goal < ActiveRecord::Base
   
   has_many(:aktions)
   has_many(:goals)
+  has_many(:followups)
 
   validate :or_goals_or_actions
 

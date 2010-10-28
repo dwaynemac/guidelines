@@ -1,0 +1,18 @@
+<p>
+  <b>Value:</b>
+  <%=h @followup.value %>
+</p>
+
+<p>
+  <b>Valid on:</b>
+  <%=h @followup.valid_on %>
+</p>
+
+<p>
+  <b>Goal:</b>
+  <%=h @followup.goal_id %>
+</p>
+
+
+<%= link_to 'Edit', edit_followup_path(@followup) %> |
+<%= link_to 'Back', followups_path %>

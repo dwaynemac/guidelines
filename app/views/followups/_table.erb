@@ -1,0 +1,13 @@
+<h1><%= t('goals.followup') %></h1>
+<table>
+  <tr>
+    <th><%= t('followup.labels.valid_on') %></th>
+    <th><%= t('followup.labels.value') %></th>
+  </tr>
+  <%- followups.each do |followup| -%>
+    <tr>
+      <td><%= l followup.valid_on %></td>
+      <th><%= followup.value %> <%= goal.control_item %></th>
+    </tr>
+  <%- end -%>
+</table>

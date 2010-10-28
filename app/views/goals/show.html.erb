@@ -4,10 +4,16 @@
 
 <%= t('goal.labels.responsable') %>: <%= h @goal.responsable.try(:name) %>
 
+<!-- seguimiento de esta directriz-->
+<%= render :partial => 'followups/table', :locals => { :followups => @goal.followups, :goal => @goal } %>
+<%= link_to(t('goal.add_followup'), new_goal_followup_path(:goal_id => @goal.id)) %>
+
+<!-- desdoblamiento de la directriz -->
 <%- unless @goal.descendants.empty? -%>
   <%= render :partial => 'table', :locals => {:goals => @goal.descendants } %>
 <%- end -%>
 
+<!-- plan de acción de la directriz -->
 <%- unless @goal.aktions.empty? -%>
   <%= render :partial => 'aktions/table', :locals => {:aktions => @goal.aktions} %>
 <%- end -%>

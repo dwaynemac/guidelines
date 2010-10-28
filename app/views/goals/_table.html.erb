@@ -16,9 +16,10 @@
       <td><%= h goal.control_item %></td>
       <td><%= h goal.responsable_id %></td>
       <td><%= h goal.due_on %></td>
-      <td><%= link_to 'Show', goal %></td>
-      <td><%= link_to 'Edit', edit_goal_path(goal) %></td>
-      <td><%= link_to 'Destroy', goal, :confirm => 'Are you sure?', :method => :delete %></td>
+      <td><%= link_to(t('goal.add_followup'), new_goal_followup_path(:goal_id => goal)) %></td>
+      <td><%= link_to t('Show'), goal %></td>
+      <td><%= link_to t('Edit'), edit_goal_path(goal) %></td>
+      <td><%= link_to t('Destroy'), goal, :confirm => 'Are you sure?', :method => :delete %></td>
     </tr>
   <% end %>
 </table>

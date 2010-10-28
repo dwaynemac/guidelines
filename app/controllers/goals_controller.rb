@@ -41,7 +41,7 @@ class GoalsController < ApplicationController
   # GET /goals/1/edit
   def edit
     @goal = Goal.find(params[:id])
-    @goals = Goal.all
+    @goals = Goal.all - @goal.descendants - [@goal]
     @goals.sort!{|a,b| a.id_number <=> b.id_number}
   end
 

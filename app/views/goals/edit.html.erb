@@ -1,6 +1,9 @@
 <h1><%= t('goals.edit.title') %></h1>
 
 <%- semantic_form_for @goal do |f| -%>
+  <%- f.inputs do -%>
+    <%= f.input :goal, :collection => @goals.map{|g|["#{g.id_number} #{g.objective}",g.id]} -%>
+  <%- end -%>
   <%= render :partial => 'form', :locals => {:f => f} %>
   <%- f.buttons do -%>
     <%= f.commit_button %>

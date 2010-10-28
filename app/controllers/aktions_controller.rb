@@ -16,7 +16,7 @@ class AktionsController < ApplicationController
   # GET /aktions/1
   # GET /aktions/1.xml
   def show
-    @aktion = Aktion.find(params[:id])
+    @aktion = @scope.find(params[:id])
 
     respond_to do |format|
       format.html # show.html.erb
@@ -37,7 +37,7 @@ class AktionsController < ApplicationController
 
   # GET /aktions/1/edit
   def edit
-    @aktion = Aktion.find(params[:id])
+    @aktion = @scope.find(params[:id])
   end
 
   # POST /aktions
@@ -59,7 +59,7 @@ class AktionsController < ApplicationController
   # PUT /aktions/1
   # PUT /aktions/1.xml
   def update
-    @aktion = Aktion.find(params[:id])
+    @aktion = @scope.find(params[:id])
 
     respond_to do |format|
       if @aktion.update_attributes(params[:aktion])
@@ -75,7 +75,7 @@ class AktionsController < ApplicationController
   # DELETE /aktions/1
   # DELETE /aktions/1.xml
   def destroy
-    @aktion = Aktion.find(params[:id])
+    @aktion = @scope.find(params[:id])
     @aktion.destroy
 
     respond_to do |format|
@@ -87,9 +87,8 @@ class AktionsController < ApplicationController
   private
   def set_scope
     if params[:goal_id]
-      @scope = Goal.find(params[:goal_id]).aktions
-    else
-      @scope = Aktion
+      @goal = Goal.find(params[:goal_id])
+      @scope = @goal.aktions
     end
   end
 end

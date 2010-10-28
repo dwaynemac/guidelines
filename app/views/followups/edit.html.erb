@@ -1,0 +1,24 @@
+<h1>Editing followup</h1>
+
+<% form_for(@followup) do |f| %>
+  <%= f.error_messages %>
+
+  <p>
+    <%= f.label :value %><br />
+    <%= f.text_field :value %>
+  </p>
+  <p>
+    <%= f.label :valid_on %><br />
+    <%= f.date_select :valid_on %>
+  </p>
+  <p>
+    <%= f.label :goal_id %><br />
+    <%= f.text_field :goal_id %>
+  </p>
+  <p>
+    <%= f.submit 'Update' %>
+  </p>
+<% end %>
+
+<%= link_to 'Show', @followup %> |
+<%= link_to 'Back', followups_path %>

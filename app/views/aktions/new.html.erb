@@ -1,9 +1,9 @@
 <h1><%= t('actions.new.title') %></h1>
 
 <%- if params[:goal_id]
-      scope = [:goal, @action]
+      scope = [:goal, @aktion]
     else
-      scope = @action
+      scope = @aktion
     end -%>
 
 <%- semantic_form_for scope do |f| -%>

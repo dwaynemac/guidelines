@@ -19,6 +19,8 @@ en:
   edit: "edit"
   actions:
     action_plan: "Action plan"
+    new:
+      title: "New action"
   confirm_destroy: "Are you sure?"
   destroy: "destroy"
   Back: "back"
@@ -29,5 +31,15 @@ en:
   goal:
     labels:
       responsable: "Responsable"
+    add_followup: "Register followup"
   navbar:
     goals: "Goals"
+  followups:
+    new:
+      title: "New followup"
+    create:
+      success: "Followup was successfully created."
+    update:
+      success: "Followup was successfully updated."
+  Show: "show"
+  Destroy: "destroy"

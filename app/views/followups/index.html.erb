@@ -1,0 +1,24 @@
+<h1>Listing followups</h1>
+
+<table>
+  <tr>
+    <th>Value</th>
+    <th>Valid on</th>
+    <th>Goal</th>
+  </tr>
+
+<% @followups.each do |followup| %>
+  <tr>
+    <td><%=h followup.value %></td>
+    <td><%=h followup.valid_on %></td>
+    <td><%=h followup.goal_id %></td>
+    <td><%= link_to 'Show', followup %></td>
+    <td><%= link_to 'Edit', edit_followup_path(followup) %></td>
+    <td><%= link_to 'Destroy', followup, :confirm => 'Are you sure?', :method => :delete %></td>
+  </tr>
+<% end %>
+</table>
+
+<br />
+
+<%= link_to 'New followup', new_followup_path %>

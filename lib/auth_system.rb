@@ -1,7 +1,7 @@
 module AuthSystem
 
   def self.included(base)
-    base.send(:helper_method, :current_user, :logged_in?)
+    base.send(:helper_method, :current_user, :current_institution, :logged_in?)
   end
 
   private

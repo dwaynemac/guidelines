@@ -1,6 +1,6 @@
 ActionController::Routing::Routes.draw do |map|
-  map.resources :goals, :has_many => [:goals, :aktions]
-  map.resources :aktions
+  map.resources :goals, :has_many => [:goals, :aktions, :followups]
+  map.resources :aktions, :except => [:new, :create]
 
   map.resources :federations
   map.resources :people

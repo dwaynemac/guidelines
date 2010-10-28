@@ -13,7 +13,12 @@
   <%= drc_top_bar(logout_url) %>
   <div id="container">
     <div id="navbar">
-      <%= link_to(t('navbar.goals'), goals_url) %>
+      <span>
+        <%= link_to(t('navbar.goals'), goals_url) %>
+      </span>
+      <span style="float:right;">
+        <%= current_institution.try(:name) %>
+      </span>
     </div>
     <%= yield %>
   </div>
