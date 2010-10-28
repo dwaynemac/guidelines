@@ -89,6 +89,15 @@ class GoalsController < ApplicationController
     end
   end
 
+  def year_plan
+    @roots = Goal.roots
+    @subgoals = Goal.all(:conditions => "goal_id is not null")
+    @subgoals.sort!{|a,b| a.id_number <=> b.id_number }
+    respond_to do |format|
+      format.html
+    end
+  end
+
   private
   def set_scope
     if params[:goal_id]

@@ -28,9 +28,15 @@ en:
   goals:
     add_subgoal: "Add sub-goal"
     add_action: "Add action to action plan"
+    year_plan:
+      subgoals: "Goals"
   goal:
     labels:
       responsable: "Responsable"
+      control_item: "Control item"
+      value: "value"
+      period: "period"
+      due_on: "Due on"
     add_followup: "Register followup"
   navbar:
     goals: "Goals"

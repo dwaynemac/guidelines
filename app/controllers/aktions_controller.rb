@@ -79,7 +79,7 @@ class AktionsController < ApplicationController
     @aktion.destroy
 
     respond_to do |format|
-      format.html { redirect_to(aktions_url) }
+      format.html { redirect_to(@goal.nil? ? aktions_url : @goal) }
       format.xml  { head :ok }
     end
   end
@@ -89,6 +89,8 @@ class AktionsController < ApplicationController
     if params[:goal_id]
       @goal = Goal.find(params[:goal_id])
       @scope = @goal.aktions
+    else
+      @scope = Aktion
     end
   end
 end

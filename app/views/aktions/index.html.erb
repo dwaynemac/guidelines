@@ -12,9 +12,9 @@
     <th>Ends on</th>
   </tr>
 
-<% @actions.each do |action| %>
+<% @aktions.each do |action| %>
   <tr>
-    <td><%=h action.goal_id %></td>
+    <td><%=h action.goal.try :id_number %></td>
     <td><%=h action.what %></td>
     <td><%=h action.how %></td>
     <td><%=h action.why %></td>
@@ -23,12 +23,8 @@
     <td><%=h action.begins_on %></td>
     <td><%=h action.ends_on %></td>
     <td><%= link_to 'Show', action %></td>
-    <td><%= link_to 'Edit', edit_action_path(action) %></td>
+    <td><%= link_to 'Edit', edit_aktion_path(action) %></td>
     <td><%= link_to 'Destroy', action, :confirm => 'Are you sure?', :method => :delete %></td>
   </tr>
 <% end %>
 </table>
-
-<br />
-
-<%= link_to 'New action', new_action_path %>
