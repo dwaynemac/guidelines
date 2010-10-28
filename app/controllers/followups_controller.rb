@@ -1,6 +1,8 @@
 class FollowupsController < ApplicationController
 
   before_filter :set_scope
+  before_filter :set_followup, :except => :index
+  authorize_resource
 
   # GET /followups
   # GET /followups.xml
@@ -16,7 +18,6 @@ class FollowupsController < ApplicationController
   # GET /followups/1
   # GET /followups/1.xml
   def show
-    @followup = @scope.find(params[:id])
 
     respond_to do |format|
       format.html # show.html.erb
@@ -27,7 +28,6 @@ class FollowupsController < ApplicationController
   # GET /followups/new
   # GET /followups/new.xml
   def new
-    @followup = @scope.build
 
     respond_to do |format|
       format.html # new.html.erb
@@ -37,13 +37,11 @@ class FollowupsController < ApplicationController
 
   # GET /followups/1/edit
   def edit
-    @followup = @scope.find(params[:id])
   end
 
   # POST /followups
   # POST /followups.xml
   def create
-    @followup = @scope.build(params[:followup])
 
     respond_to do |format|
       if @followup.save
@@ -59,7 +57,6 @@ class FollowupsController < ApplicationController
   # PUT /followups/1
   # PUT /followups/1.xml
   def update
-    @followup = @scope.find(params[:id])
 
     respond_to do |format|
       if @followup.update_attributes(params[:followup])
@@ -75,7 +72,6 @@ class FollowupsController < ApplicationController
   # DELETE /followups/1
   # DELETE /followups/1.xml
   def destroy
-    @followup = @scope.find(params[:id])
     @followup.destroy
 
     respond_to do |format|
@@ -89,4 +85,13 @@ class FollowupsController < ApplicationController
     @goal = Goal.find(params[:goal_id])
     @scope = @goal.followups
   end
+
+  def set_followup
+    if params[:action] == 'create' || params[:action] == 'new'
+      @followup = @scope.build(params[:followup])
+    else
+      @followup = @scope.find(params[:id])
+    end
+  end
+
 end

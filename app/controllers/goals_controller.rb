@@ -1,7 +1,7 @@
 class GoalsController < ApplicationController
   before_filter :set_scope
   before_filter :get_goal, :except => [:index, :year_plan]
-  authorize_resource
+  authorize_resource :except => :year_plan
 
   # GET /goals
   # GET /goals.xml
@@ -86,6 +86,7 @@ class GoalsController < ApplicationController
   end
 
   def year_plan
+    authorize! :see, :year_plan
     @roots = Goal.roots
     @subgoals = Goal.all(:conditions => "goal_id is not null")
     @subgoals.sort!{|a,b| a.id_number <=> b.id_number }
@@ -97,9 +98,9 @@ class GoalsController < ApplicationController
   private
   def set_scope
     if params[:goal_id]
-      @scope = Goal.find(params[:goal_id]).goals
+      @scope = Goal.find(params[:goal_id]).goals.visible_for(current_user)
     else
-      @scope = Goal.placebo
+      @scope = Goal.visible_for(current_user)
     end
   end
 

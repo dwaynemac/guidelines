@@ -11,6 +11,9 @@ class Ability
       can :create, Goal
       can :update, Goal, :institution_id => user.institution_id
 
+      # followup
+      can :manage, Followup, :goal => {:institution_id => user.institution_id}
+
       # person
       can [:update, :delete], Person, :institution_id => user.institution_id
 
@@ -21,8 +24,7 @@ class Ability
     end
 
     if user.role == "supervisor"
-      can :manage, :all
-      cannot :manage, [User, Federation]
+      can :see, :year_plan
     end
 
     if user.role == "admin"

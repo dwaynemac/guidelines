@@ -1,6 +1,9 @@
 class Goal < ActiveRecord::Base
 
-  named_scope :placebo, :conditions => {}
+  named_scope:visible_for, lambda { |user|
+    unless %W(admin supervisor).include?(user.role)
+      {:conditions => ["institution_id is null or institution_id = ?", user.institution.id]} unless user.institution.nil?
+    end }
 
   acts_as_tree(:foreign_key => :goal_id, :order => :order_number)
 
@@ -22,7 +25,7 @@ class Goal < ActiveRecord::Base
 
   private
   def or_goals_or_actions
-    if !self.goals.empty? && !self.actions.empty?
+    if !self.goals.empty? && !self.aktions.empty?
       self.errors.add_to_base t('goal.validations.goals_or_actions')
     end
   end

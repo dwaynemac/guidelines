@@ -18,10 +18,10 @@
       <td><%=h goal.institution.try :name %></td>
       <td><%= h goal.responsable.try :name %></td>
       <td><%= h goal.due_on %></td>
-      <td><%= link_to(t('goal.add_followup'), new_goal_followup_path(:goal_id => goal)) %></td>
-      <td><%= link_to t('Show'), goal %></td>
-      <td><%= link_to t('Edit'), edit_goal_path(goal) %></td>
-      <td><%= link_to t('Destroy'), goal, :confirm => 'Are you sure?', :method => :delete %></td>
+      <td><%= link_to(t('goal.add_followup'), new_goal_followup_path(:goal_id => goal)) if can? :update, goal %></td>
+      <td><%= link_to( t('Show'), goal) if can? :read, goal %></td>
+      <td><%= link_to( t('Edit'), edit_goal_path(goal)) if can? :update, goal %></td>
+      <td><%= link_to( t('Destroy'), goal, :confirm => 'Are you sure?', :method => :delete ) if can? :delete, goal%></td>
     </tr>
   <% end %>
 </table>
