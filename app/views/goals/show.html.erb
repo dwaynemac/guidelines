@@ -1,32 +1,64 @@
-<h1><%= @goal.id_number %> - <%=h @goal.objective %></h1>
-
-<%= @goal.control_item %> = <%= @goal.value %> @ <%=l @goal.due_on %><br>
-
-<%= t('goal.labels.responsable') %>: <%= h @goal.responsable.try(:name) %>
-
-<!-- seguimiento de esta directriz-->
-<%= render :partial => 'followups/table', :locals => { :followups => @goal.followups, :goal => @goal } %>
-<%= link_to(t('goal.add_followup'), new_goal_followup_path(:goal_id => @goal.id)) %>
+<h1>
+  <span title='<%= "#{@goal.value} #{@goal.control_item} @ #{l(@goal.due_on)}" %>'><%= @goal.id_number %> - <%=h @goal.objective %></span>
+</h1>
 
 <!-- desdoblamiento de la directriz -->
-<%- unless @goal.descendants.empty? -%>
-  <%= render :partial => 'table', :locals => {:goals => @goal.descendants } %>
-<%- end -%>
+<div id="subgoals">
+  <%- unless @goal.children.empty? -%>
+    <%= render :partial => 'table', :locals => {:goals => @goal.descendants } %>
+  <%- end -%>
+  <%- if can? :add_subgoals, @goal -%>
+    <%= link_to(t('goals.add_subgoal'), new_goal_goal_path(:goal_id => @goal))  if @goal.aktions.empty? %>
+  <%- end -%>
+</div>
 
 <!-- plan de acción de la directriz -->
-<%- unless @goal.aktions.empty? -%>
-  <%= render :partial => 'aktions/table', :locals => {:aktions => @goal.aktions} %>
-<%- end -%>
+<div id="action_plan">
+  <%- unless @goal.aktions.empty? -%>
+    <%= render :partial => 'aktions/table', :locals => {:aktions => @goal.aktions} %>
+  <%- end -%>
+  <%- if can? :add_actions, @goal -%>
+    <%= link_to( t('goals.add_action'), new_goal_aktion_path(@goal) ) if @goal.goals.empty? %>
+  <%- end -%>
+</div>
 
-<div>
-  <%= link_to( t('goals.add_action'), new_goal_aktion_path(@goal) ) if @goal.goals.empty? %>
+<div id="followup">
+  <div><strong>poner a este div id="followup_graph" para habilitar gráfico</strong></div>
+  <script type="text/javascript">
+    var fowup_chart;
+    $(document).ready(function(){
+      fowup_chart = new Highcharts.Chart({
+        chart: {
+          renderTo: 'followup_graph',
+          defaultSeriesType: 'line'
+        },
+        title: { text: 'Followup' },
+        xAxis: {
+          categories: [<%= @goal.followups.map{|f|l(f.valid_on)}.join(',')%>]
+        },
+        yAxis: {
+          title: {
+            text: '<%= @goal.control_item %>'
+          }
+        },
+        series: [
+          {
+          name: '<%= @goal.id_number %>',
+          data: [<%= @goal.followups.map{|f|f.value}.join(',')%>]
+        }]
+      });
+    });
+  </script>
+  <%= render :partial => 'followups/table', :locals => { :followups => @goal.followups, :goal => @goal } %>
+  <%= link_to(t('goal.add_followup'), new_goal_followup_path(:goal_id => @goal.id)) if can? :create, Followup%>
 </div>
 
 <div>
-  <%= link_to(t('goals.add_subgoal'), new_goal_goal_path(:goal_id => @goal))  if @goal.aktions.empty? %>
-</div>
-
-<div>
-  <%= link_to t('Edit'), edit_goal_path(@goal) %> |
+  <%- if can? :update, @goal -%>
+    <%= link_to t('Edit'), edit_goal_path(@goal) %> |
+  <%- end -%>
+  <%- if can? :delete, @goal -%>
+  <%= link_to( t('Destroy'), @goal, :confirm => t('confirm_destory'), :method => :delete ) %> |
+  <%- end -%>
   <%= link_to t('Back'), goals_path %>
 </div>

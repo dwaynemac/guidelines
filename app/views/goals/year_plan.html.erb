@@ -10,7 +10,10 @@
     border: solid 1px;
   }
 
-  td { border: solid 1px;}
+  td {
+    border: solid 1px;
+    max-width: 300px;
+  }
 
   th {
     border: solid 1px;
@@ -26,8 +29,7 @@
     <th><%= t('goals.year_plan.subgoals') %></th>
     <%- @roots.each do |root| -%>
       <th class="root">
-        <%= root.id_number %><br/>
-        <%= root.objective %>
+        <%= link_to_if can?( :read, root), "#{root.id_number}<br/>#{root.objective}", root %>
       </th>
     <%- end -%>
     <th><%= t('goal.labels.control_item') %></th>
@@ -37,14 +39,14 @@
   </tr>
   <%- @subgoals.each do |goal| -%>
     <tr>
-      <td><%= goal.id_number %> - <%= goal.objective %></td>
+      <td><%= link_to_if can?(:read, goal), "#{goal.id_number}<br/>#{goal.objective}", goal %></td>
       <%- @roots.each do |root| -%>
         <td>
-          <%- if goal.goal == root-%>
-            <%= root.incidence  %>
-        <%- else -%>
-          0
-        <%- end -%>
+          <%- if goal.ancestors.include?(root)-%>
+            <%= jeditable_field :goal, :incidence, {:object => goal, :type => :select, :select_collection => {1 => 'bajo',2 => 'medio',3 => 'alto'}.to_json} %>
+          <%- else -%>
+            -
+          <%- end -%>
         </td>
       <%- end -%>
       <td><%=h goal.control_item %></td>

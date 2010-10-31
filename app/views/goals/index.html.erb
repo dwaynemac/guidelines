@@ -1,7 +1,7 @@
-<h1>Listing goals</h1>
+<h1><%= t('goals.index.title') %></h1>
 
 <%= render :partial => 'table', :locals => { :goals => @goals } %>
 
 <br />
 
-<%= link_to 'New goal', new_goal_path %>
+<%= link_to( t('goals.index.new_goal'), new_goal_path ) if can? :create_root, Goal %>

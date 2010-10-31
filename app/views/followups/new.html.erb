@@ -2,7 +2,8 @@
 
 <%- semantic_form_for [@goal, @followup] do |f| -%>
   <%- f.inputs do -%>
-    <%= f.input :valid_on %>
+    <%= f.input :'valid_on(3i)', :as => :hidden, :value => 1 %><!-- needed for month picker-->
+    <%= f.input :valid_on, :as => :date, :order => [:month, :year] %>
     <%= f.input :value %>
   <%- end -%>
   <%- f.buttons do -%>

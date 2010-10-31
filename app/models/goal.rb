@@ -8,6 +8,7 @@ class Goal < ActiveRecord::Base
   acts_as_tree(:foreign_key => :goal_id, :order => :order_number)
 
   validates_numericality_of(:order_number)
+  validates_presence_of :objective, :value, :control_item, :due_on
 
   belongs_to :goal
   belongs_to :responsable, :class_name => "Person"

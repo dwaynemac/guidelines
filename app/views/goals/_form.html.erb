@@ -1,1 +1,5 @@
-<%= f.inputs :institution, :order_number, :objective, :value, :control_item, :responsable, :due_on -%>
+<%- f.inputs do -%>
+  <%= @goal.institution_id.nil?? f.input(:institution) : f.input(:institution_id, :as => :hidden) -%>
+  <%= f.inputs :order_number, :objective, :value, :control_item, :responsable -%>
+<%- end -%>
+<%= f.input(:due_on, :as => :string, :input_html => {:class => 'datepicker'}) %>

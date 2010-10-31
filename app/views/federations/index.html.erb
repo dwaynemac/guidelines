@@ -8,13 +8,16 @@
 <% @federations.each do |federation| %>
   <tr>
     <td><%=h federation.name %></td>
-    <td><%= link_to 'Show', federation %></td>
-    <td><%= link_to 'Edit', edit_federation_path(federation) %></td>
-    <td><%= link_to 'Destroy', federation, :confirm => 'Are you sure?', :method => :delete %></td>
+    <%- if can? :modify, federation -%>
+      <td><%= link_to t('Edit'), edit_federation_path(federation) %></td>
+      <td><%= link_to t('Destroy'), federation, :confirm => 'Are you sure?', :method => :delete %></td>
+    <%- end -%>
   </tr>
 <% end %>
 </table>
 
 <br />
 
-<%= link_to 'New federation', new_federation_path %>
+<%- if can? :create, Federation -%>
+  <%= link_to t('federation.new_federation'), new_federation_path %>
+<%- end -%>

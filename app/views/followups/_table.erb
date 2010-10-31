@@ -7,7 +7,8 @@
   <%- followups.each do |followup| -%>
     <tr>
       <td><%= l followup.valid_on %></td>
-      <th><%= followup.value %> <%= goal.control_item %></th>
+      <td><%= followup.value %> <%=h goal.control_item %></td>
+      <td><%= link_to(t('destroy'),goal_followup_path([@goal,followup]),:confirm => t('confirm_destroy')) if can? :delete, followup %></td>
     </tr>
   <%- end -%>
 </table>

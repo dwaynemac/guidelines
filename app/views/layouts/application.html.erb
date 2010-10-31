@@ -5,8 +5,10 @@
 <head>
   <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
   <title><%= @page_title ||= "guidelines" %></title>
-  <%= javascript_include_tag 'jquery' %>
+  <%= javascript_include_tag 'jquery-1.4.2.min', 'jquery-ui-1.8.5.custom.min', 'jquery.jeditable', 'highcharts'  %>
+  <%= stylesheet_link_tag('humanity/jquery-ui-1.8.5.custom') %>
   <%= formtastic_stylesheet_link_tag %>
+  <%= javascript_include_tag 'application' %>
 </head>
 
 <body>
@@ -15,6 +17,7 @@
     <div id="navbar">
       <span>
         <%= link_to(t('navbar.goals'), goals_url) if can? :read, Goal %>
+        <%= link_to(t('navbar.year_plan'), year_plan_goals_url) if can? :see, :year_plan %>
         <%= link_to(t('navbar.users'), users_url) if can? :read, User %>
         <%= link_to(t('navbar.institution'), federations_url) if can? :read, Federation %>
         <%= link_to(t('navbar.people'), people_url) if can? :read, Person %>
@@ -25,7 +28,9 @@
       </span>
     </div>
     <div id="notices">
-      <%= notice %>
+      <%= success_widget(flash[:success]) %>
+      <%= notice_widget(flash[:notice]) %>
+      <%= alert_widget(flash[:error]) %>
     </div>
     <%= yield %>
   </div>

@@ -36,15 +36,14 @@ class PeopleController < ApplicationController
   # POST /people
   # POST /people.xml
   def create
-    respond_to do |format|
+    respond_to { |format|
       if @person.save
-        format.html { redirect_to(@person, :notice => 'Person was successfully created.') }
-        format.xml  { render :xml => @person, :status => :created, :location => @person }
+        format.html { redirect_to(people_url, :notice => t('people.create.success')) }
+        format.xml { render :xml => @person, :status => :created, :location => @person }
       else
         format.html { render :action => "new" }
-        format.xml  { render :xml => @person.errors, :status => :unprocessable_entity }
-      end
-    end
+        format.xml { render :xml => @person.errors, :status => :unprocessable_entity }
+      end }
   end
 
   # PUT /people/1

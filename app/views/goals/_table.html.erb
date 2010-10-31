@@ -1,27 +1,22 @@
 <table>
   <tr>
     <th></th>
-    <th>Objective</th>
-    <th>Value</th>
-    <th>Control item</th>
-    <th>Federation</th>
+    <th><%= t('goal.labels.objective') %></th>
+    <th><%= t('goal.labels.control_item') %></th>
+    <th><%= t('goal.labels.value_and_due_date') %></th>
     <th>Responsable</th>
-    <th>Due on</th>
   </tr>
 
   <% goals.each do |goal| %>
     <tr>
-      <td><%= h goal.id_number %></td>
-      <td><%= h goal.objective %></td>
-      <td><%= h goal.value %></td>
-      <td><%= h goal.control_item %></td>
-      <td><%=h goal.institution.try :name %></td>
+      <td><%= h link_to_if(can?(:read, goal),goal.id_number,goal) %></td>
+      <td><%= jeditable_field :goal, :objective, :object => goal %></td>
+      <td><%= jeditable_field :goal, :control_item, :object => goal %></td>
+      <td><%= jeditable_field :goal, :value, :object => goal %> @ <%= l goal.due_on %></td>
       <td><%= h goal.responsable.try :name %></td>
-      <td><%= h goal.due_on %></td>
-      <td><%= link_to(t('goal.add_followup'), new_goal_followup_path(:goal_id => goal)) if can? :update, goal %></td>
-      <td><%= link_to( t('Show'), goal) if can? :read, goal %></td>
+      <td><%=h goal.institution.try :name %></td>
       <td><%= link_to( t('Edit'), edit_goal_path(goal)) if can? :update, goal %></td>
-      <td><%= link_to( t('Destroy'), goal, :confirm => 'Are you sure?', :method => :delete ) if can? :delete, goal%></td>
+      <td></td>
     </tr>
   <% end %>
 </table>

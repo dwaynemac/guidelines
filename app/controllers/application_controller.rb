@@ -15,6 +15,23 @@ class ApplicationController < ActionController::Base
     redirect_to root_url
   end
 
+  # == Arguments
+  # object: object to evaluate
+  # status: true if updates successfully false if failed
+  def jeditable_result(object, status,options = {})
+    param = options[:param] || params[:wants]
+    tokens = param.split('.')
+    result = object
+    if status
+      tokens.each do |t|
+        result = result.send(t)
+      end
+    else
+      result = t('jeditable.error_saving')
+    end
+    {:result => result}
+  end
+
   private
   def set_locale
     new_locale = params[:locale]

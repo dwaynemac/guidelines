@@ -7,7 +7,10 @@ en:
     logged_in_as: "DRC session: <strong>{{drc_user}}</strong>"
     no_local_user: "You dont have a user on this application."
     not_you_logout: "If this DeRose Connection is not yours <a href={{logout_url}}>logout</a>."
-
+  jeditable:
+    tooltip: 'click to edit'
+    submit: "submit"
+    cancel: "cancel"
   action:
     labels:
       what: "what"
@@ -26,10 +29,18 @@ en:
   Back: "back"
   Edit: "edit"
   goals:
+    followup: "Followup"
     add_subgoal: "Add sub-goal"
     add_action: "Add action to action plan"
     year_plan:
       subgoals: "Goals"
+    index:
+      new_goal: "New goal"
+      title: "Listing goals"
+    show:
+      title: "Unfolding goal"
+    create:
+      success: "Goal was successfully created."
   goal:
     labels:
       responsable: "Responsable"
@@ -37,12 +48,19 @@ en:
       value: "value"
       period: "period"
       due_on: "Due on"
+      objective: "Objective"
+      value_and_due_date: "Value and due date"
     add_followup: "Register followup"
   navbar:
     goals: "Goals"
     users: "Users"
     institution: "Institutions"
     people: "people"
+    year_plan: "Year plan"
+  followup:
+    labels:
+      valid_on: "Valid on"
+      value: "Value"
   followups:
     new:
       title: "New followup"
@@ -58,3 +76,8 @@ en:
       intitution_name: "institution"
     lables:
       role: "role"
+  federation:
+    new_federation: "New federation"
+  people:
+    create:
+      success: "Person was successfully created."
