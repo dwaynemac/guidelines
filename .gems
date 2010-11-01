@@ -1,15 +1,17 @@
-rails --version '2.3.8'
-oauth-plugin
-oauth
-http_accept_language
-authlogic_drc
-authlogic
-drc_client
-acts-as-taggable-on
-nokogiri
-searchlogic
-formtastic
-will_paginate
-money
-paperclip
-fastercsv
+gem 'rails', '2.3.8'
+gem 'oauth-plugin'
+gem 'oauth'
+gem 'http_accept_language'
+gem 'authlogic_drc'
+gem 'authlogic'
+gem 'drc_client'
+gem 'acts-as-taggable-on', '2.0.0.rc1'
+gem 'nokogiri'
+gem 'searchlogic'
+gem 'formtastic'
+gem 'will_paginate'
+gem 'money'
+gem 'paperclip'
+gem 'fastercsv'
+gem 'cancan'
+gem 'hoptoad_notifier'
