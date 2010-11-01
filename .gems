@@ -8,7 +8,7 @@
 'acts-as-taggable-on' --version '2.0.0.rc1'
 'nokogiri'
 'searchlogic'
-'formtastic'
+'formtastic' --ignore-dependencies
 'will_paginate'
 'money'
 'paperclip'
