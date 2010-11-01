@@ -1,4 +1,4 @@
-'rails', '2.3.8'
+'rails', :version => '2.3.8'
 'oauth-plugin'
 'oauth'
 'http_accept_language'
