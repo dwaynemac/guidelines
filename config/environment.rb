@@ -14,13 +14,9 @@ Rails::Initializer.run do |config|
   config.gem 'authlogic'
   config.gem 'drc_client'
   config.gem 'acts-as-taggable-on', :source => 'http://gemcutter.org', :version => '2.0.0.rc1'
-  config.gem 'nokogiri'
   config.gem 'searchlogic'
   config.gem 'formtastic'
   config.gem 'will_paginate'
-  config.gem 'money'
-  config.gem 'paperclip'
-  config.gem 'fastercsv'
   config.gem 'cancan'
   config.gem 'hoptoad_notifier'
 

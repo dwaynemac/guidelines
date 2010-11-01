@@ -28,3 +28,7 @@ config.action_view.cache_template_loading            = true
 # config.threadsafe!
 
 DRC_URL = 'https://metododerose.org:8443'
+
+PADMA_KEY = ''
+PADMA_SECRET = ''
+PADMA_API_URI = 'http://localhost:3000'
