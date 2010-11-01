@@ -2,7 +2,6 @@
 # See http://github.com/svenfuchs/rails-i18n/tree/master/rails%2Flocale for starting points.
 
 en:
-  hello: "Hello world"
   drc_client:
     logged_in_as: "DRC session: <strong>{{drc_user}}</strong>"
     no_local_user: "You dont have a user on this application."
@@ -76,6 +75,7 @@ en:
       intitution_name: "institution"
     lables:
       role: "role"
+    profile: "profile"
   federation:
     new_federation: "New federation"
   people:

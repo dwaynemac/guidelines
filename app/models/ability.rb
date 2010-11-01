@@ -5,6 +5,7 @@ class Ability
 
     can :read, :all
     cannot :read, [User, Federation, Person]
+    can [:profile,:update], User, :id => user.id
 
     if user.role == "federation_president" || user.role == "federation_responsable"
       # goal

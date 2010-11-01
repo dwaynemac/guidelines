@@ -7,4 +7,7 @@ class User < ActiveRecord::Base
 
   ROLES = %W(federation_responsable federation_president supervisor admin)
 
+  def allowed?
+    self.authorized?
+  end
 end #end

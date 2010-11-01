@@ -6,7 +6,7 @@ class UserSessionsController < ApplicationController
       redirect_to root_url
     else
       respond_to do |format|
-        format.html
+        format.html { render :layout => 'guest' }
         format.xml do
           headers["Status"] = "Unauthorized"
           render :text => "Could't authenticate you", :status => '401 Unauthorized'

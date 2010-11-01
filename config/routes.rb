@@ -11,9 +11,9 @@ ActionController::Routing::Routes.draw do |map|
 
   map.logout '/logout', :controller => :user_sessions, :action => :destroy
 
-  map.resources :users
+  map.resources :users, :member => { :profile => :get }
 
-  map.root :controller => 'main', :action => 'index'
+  map.root :controller => 'goals', :action => 'index'
 
   # The priority is based upon order of creation: first created -> highest priority.
 

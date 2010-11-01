@@ -23,6 +23,7 @@ class GoalsController < ApplicationController
   # GET /goals/1
   # GET /goals/1.xml
   def show
+
     respond_to do |format|
       format.html # show.html.erb
       format.xml  { render :xml => @goal }

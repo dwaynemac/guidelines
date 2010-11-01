@@ -23,7 +23,7 @@
 </div>
 
 <div id="followup">
-  <div><strong>poner a este div id="followup_graph" para habilitar gráfico</strong></div>
+  <!--<div id="followup_graph"></div>
   <script type="text/javascript">
     var fowup_chart;
     $(document).ready(function(){
@@ -34,7 +34,7 @@
         },
         title: { text: 'Followup' },
         xAxis: {
-          categories: [<%= @goal.followups.map{|f|l(f.valid_on)}.join(',')%>]
+          categories: [<%= @categories.try :join, ','%>]
         },
         yAxis: {
           title: {
@@ -42,13 +42,12 @@
           }
         },
         series: [
-          {
-          name: '<%= @goal.id_number %>',
-          data: [<%= @goal.followups.map{|f|f.value}.join(',')%>]
-        }]
+          <%= @series-%>
+        ]
       });
     });
-  </script>
+  </script>-->
+
   <%= render :partial => 'followups/table', :locals => { :followups => @goal.followups, :goal => @goal } %>
   <%= link_to(t('goal.add_followup'), new_goal_followup_path(:goal_id => @goal.id)) if can? :create, Followup%>
 </div>

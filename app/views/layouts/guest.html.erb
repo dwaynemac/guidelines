@@ -14,20 +14,6 @@
 <body>
   <%= drc_top_bar(logout_url) %>
   <div id="container">
-    <div id="navbar">
-      <span>
-        <%= link_to(t('navbar.goals'), goals_url) if can? :read, Goal %>
-        <%= link_to(t('navbar.year_plan'), year_plan_goals_url) if can? :see, :year_plan %>
-        <%= link_to(t('navbar.users'), users_url) if can? :read, User %>
-        <%= link_to(t('navbar.institution'), federations_url) if can? :read, Federation %>
-        <%= link_to(t('navbar.people'), people_url) if can? :read, Person %>
-      </span>
-      <span style="float:right;">
-        <%= link_to t('user.profile'), profile_user_path(current_user) if can? :profile, current_user %> -
-        <%= current_user.role || "-" %> |
-        <%= current_institution.try(:name) %>
-      </span>
-    </div>
     <div id="notices">
       <%= success_widget(flash[:success]) %>
       <%= notice_widget(flash[:notice]) %>
