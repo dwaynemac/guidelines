@@ -18,7 +18,7 @@ Rails::Initializer.run do |config|
   config.gem 'formtastic'
   config.gem 'will_paginate'
   config.gem 'cancan'
-  config.gem 'nokogiri'
+#  config.gem 'nokogiri'
   config.gem 'hoptoad_notifier'
 
   # Settings in config/environments/* take precedence over those specified here.
@@ -56,5 +56,5 @@ Rails::Initializer.run do |config|
 end
 
 #Use Nokogiri
-ActiveSupport::XmlMini.backend = 'Nokogiri'
+#ActiveSupport::XmlMini.backend = 'Nokogiri'
 DRCClient.configure(:base_url => DRC_URL, :enable_single_sign_out => true, :require_local_user => true, :user_model => User)
