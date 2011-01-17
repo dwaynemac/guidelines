@@ -1,3 +1,26 @@
+# Role abilities
+#
+# In views use can? or cannot?. e.g.:
+#   <% if can? :update, @article %>
+#    <%= link_to "Edit", edit_article_path(@article) %>
+#  <% end %>
+#
+# In controllers use authorize! e.g.:
+#
+#   def show
+#     @article = Article.find(params[:id])
+#     authorize! :read, @article
+#   end
+#
+#   OR for standard validations (:read, :update, :destroy)
+#
+#   class ArticlesController < ApplicationController
+#     load_and_authorize_resource
+#
+#      def show
+#        # @article is already loaded and authorized
+#      end
+#   end
 class Ability
   include CanCan::Ability
 
@@ -7,6 +30,7 @@ class Ability
     cannot :read, [User, Federation, Person]
     can [:profile,:update], User, :id => user.id
 
+    # Abilities for Federation president and vice-president. (e.g.: Edgardo)
     if user.role == "federation_president" || user.role == "federation_responsable"
       # goal
       can :create, Goal
@@ -26,12 +50,14 @@ class Ability
       end
     end
 
+    # Abilities for Supervisor role. (e.g.: Office).
     if user.role == "supervisor"
       can :read, Federation
       can :see, :year_plan
       can :create_root, Goal
     end
 
+    # Abilities for system administrator.
     if user.role == "admin"
       can :manage, :all
     end
