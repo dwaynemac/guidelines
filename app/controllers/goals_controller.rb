@@ -117,6 +117,7 @@ class GoalsController < ApplicationController
   end
 
   def build_goal
+
     # for setting date from text_field'
     unless params[:goal].try(:fetch,:due_on,nil).nil?
       params[:goal][:due_on] = Date.parse(params[:goal][:due_on])

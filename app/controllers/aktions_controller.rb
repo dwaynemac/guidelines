@@ -46,7 +46,7 @@ class AktionsController < ApplicationController
   def create
     respond_to do |format|
       if @aktion.save
-        format.html { redirect_to(goal_url(:id => params[:goal_id]), :notice => 'aktion was successfully created.') }
+        format.html { redirect_to(goal_url(:id => params[:goal_id]), :notice => t('aktions.create.succes')) }
         format.xml  { render :xml => @aktion, :status => :created, :location => @aktion }
       else
         format.html { render :action => "new" }
@@ -60,7 +60,7 @@ class AktionsController < ApplicationController
   def update
     respond_to do |format|
       if @aktion.update_attributes(params[:aktion])
-        format.html { redirect_to(goal_url(:id => params[:goal_id]), :notice => 'Action was successfully updated.') }
+        format.html { redirect_to(goal_url(:id => params[:goal_id]), :notice => t('aktions.update.success')) }
         format.xml  { head :ok }
       else
         format.html { render :aktion => "edit" }
@@ -92,6 +92,15 @@ class AktionsController < ApplicationController
 
   def set_aktion
     if params[:action] == 'new' || params[:action] == 'create'
+
+      # for setting date from text_field'
+      unless params[:aktion].try(:fetch,:starts_on,nil).nil?
+        params[:aktion][:starts_on] = Date.parse(params[:aktion][:starts_on])
+      end
+      unless params[:aktion].try(:fetch,:ends_on,nil).nil?
+        params[:aktion][:ends_on] = Date.parse(params[:aktion][:ends_on])
+      end
+
       @aktion = @scope.build(params[:aktion])
     else
       @aktion = @scope.find(params[:id])

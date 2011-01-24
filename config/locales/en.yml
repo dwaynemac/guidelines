@@ -81,3 +81,8 @@ en:
   people:
     create:
       success: "Person was successfully created."
+  aktions:
+    create:
+      succes: "aktion was successfully created."
+    update:
+      success: "Action was successfully updated."
