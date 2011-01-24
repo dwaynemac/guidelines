@@ -2,3 +2,6 @@
 log/*.log
 tmp/**/*
 .idea/*
+config/deploy.rb
+config/deploy/*
+.rvmrc
