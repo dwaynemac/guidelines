@@ -18,8 +18,10 @@ Rails::Initializer.run do |config|
   config.gem 'formtastic'
   config.gem 'will_paginate'
   config.gem 'cancan'
-#  config.gem 'nokogiri'
   config.gem 'hoptoad_notifier'
+
+#  config.gem 'nokogiri'
+
 
   # Settings in config/environments/* take precedence over those specified here.
   # Application configuration should go into files in config/initializers

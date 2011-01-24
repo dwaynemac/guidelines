@@ -37,6 +37,8 @@ es:
       title: "Desoblamiento de la directriz"
     create:
       success: "Directriz creada."
+    new:
+      title: "Nueva directriz"
   goal:
     labels:
       responsable: "Responsable"
@@ -75,9 +77,14 @@ es:
     profile: "perfil"
   federation:
     new_federation: "Nueva federación"
+    labels:
+      name: "Nombre"
   people:
     create:
       success: "Persona creada."
+    index:
+      title: "Personas"
+    new_people: "Agregar persona"
   date:
     formats:
       default: "%e/%m/%Y"
@@ -239,8 +246,37 @@ es:
         less_than_or_equal_to: debe ser menor o igual que {{count}}
         odd: debe ser par
         even: debe ser impar
+    models:
+      institution: "Institución"
+      federation: "Federación"
+      aktion: "Acción"
+      goal: "Directriz"
+      follow_up: "Seguimiento"
+      person: "Persona"
+      user: "Usuario"
+    attributes:
+      goal:
+        intitution: "Institución"
+        order_number: "Orden"
+        objective: "Objetivo"
+        value: "Valor"
+        control_item: "Item de control"
+        responsable: "Responsable"
+        due_on: "Fecha límite"
   support:
     array:
       words_connector: ", "
       two_words_connector: " y "
       last_word_connector: " y "
+  back: "volver"
+  federations:
+    index:
+      title: "Federaciones"
+    new:
+      title: "Nueva federación"
+  confirm: "Seguro?"
+  person:
+    labels:
+      name: "Nombre"
+      institution: "Institución"
+  create: "Crear"

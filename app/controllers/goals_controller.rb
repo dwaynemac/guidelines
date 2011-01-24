@@ -37,6 +37,9 @@ class GoalsController < ApplicationController
     # federation user can only create his own goals
     @goal.institution_id=current_user.institution_id
 
+    institution = current_user.institution
+    @people = institution.nil?? Person.all : institution.people.all
+
     respond_to do |format|
       format.html # new.html.erb
       format.xml  { render :xml => @goal }

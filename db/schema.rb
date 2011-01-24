@@ -9,7 +9,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20101101001129) do
+ActiveRecord::Schema.define(:version => 20101028161309) do
 
   create_table "aktions", :force => true do |t|
     t.integer  "goal_id"
@@ -35,16 +35,6 @@ ActiveRecord::Schema.define(:version => 20101101001129) do
   end
 
   add_index "consumer_tokens", ["token"], :name => "index_consumer_tokens_on_token", :unique => true
-
-  create_table "date_tables", :force => true do |t|
-    t.integer  "day"
-    t.integer  "month"
-    t.integer  "year"
-    t.boolean  "first_day_of_month"
-    t.boolean  "last_day_of_month"
-    t.datetime "created_at"
-    t.datetime "updated_at"
-  end
 
   create_table "federations", :force => true do |t|
     t.string   "name"
