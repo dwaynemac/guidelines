@@ -49,7 +49,7 @@ class AktionsController < ApplicationController
         format.html { redirect_to(goal_url(:id => params[:goal_id]), :notice => 'aktion was successfully created.') }
         format.xml  { render :xml => @aktion, :status => :created, :location => @aktion }
       else
-        format.html { render :aktion => "new" }
+        format.html { render :action => "new" }
         format.xml  { render :xml => @aktion.errors, :status => :unprocessable_entity }
       end
     end
