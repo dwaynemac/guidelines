@@ -281,3 +281,7 @@ es:
       institution: "Institución"
   create: "Crear"
   page_title: "Seguimiento de directrices"
+  users:
+    create:
+      success: "Usuario creado"
+    new_user: "nuevo usuario"

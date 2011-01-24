@@ -5,6 +5,24 @@ class UsersController < ApplicationController
     @users = User.all
   end
 
+  def new
+    respond_to do |format|
+      format.html
+    end
+  end
+
+  def create
+    if @user.save
+      respond_to do |format|
+        format.html { redirect_to users_url, :notice => t('users.create.success') }
+      end
+    else
+      respond_to do |format|
+        format.html { render :action => :new }
+      end
+    end
+  end
+
   def edit
     authorize! :admin, @user
     @institutions = Federation.all
