@@ -54,7 +54,7 @@ class Ability
     if user.role == "supervisor"
       can :read, Federation
       can :see, :year_plan
-      can :create_root, Goal
+      can :manage, Goal
     end
 
     # Abilities for system administrator.
