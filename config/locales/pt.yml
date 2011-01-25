@@ -1,0 +1,281 @@
+pt:
+  drc_client:
+    logged_in_as: "Sessão DRC: <strong>{{drc_user}}</strong>"
+    no_local_user: "Você não tem acesso a este aplicativo."
+    not_you_logout: "Caso este não seja seu usuário, <a href={{logout_url}}>encerre a sessão</a>."
+  jeditable:
+    tooltip: 'clique para editar'
+    submit: "enviar"
+    cancel: "cancelar"
+  action:
+    labels:
+      what: "O quê"
+      how: "Como"
+      why: "Porquê"
+      where: "Onde"
+      who: "Quem"
+      when: "Quando"
+  edit: "editar"
+  actions:
+    action_plan: "Plano de ação"
+    new:
+      title: "Nova ação"
+  confirm_destroy: "Confirma?"
+  destroy: "eliminar"
+  Back: "voltar"
+  Edit: "editar"
+  goals:
+    followup: "Acompanhamento"
+    add_subgoal: "Adicionar sub-diretriz"
+    add_action: "Adicionar ação ao plano de ação"
+    year_plan:
+      subgoals: "Projetos"
+    index:
+      new_goal: "Nova diretriz"
+      title: "Diretrizes"
+    show:
+      title: "Desdobramento da diretriz"
+    create:
+      success: "Diretriz criada."
+    new:
+      title: "Nova diretriz"
+  goal:
+    labels:
+      responsable: "Responsável"
+      control_item: "Item de controle"
+      value: "valor"
+      period: "período"
+      due_on: "Encerra limite"
+      objective: "Objetivo"
+      value_and_due_date: "Valor e prazo"
+    add_followup: "Registrar acompanhamento"
+  navbar:
+    goals: "Diretrizes"
+    users: "Usuários"
+    institution: "Federações"
+    people: "Pessoas"
+    year_plan: "Plano anual"
+  followup:
+    labels:
+      value: "valor"
+  followups:
+    new:
+      title: "Novo acompanhamento"
+    create:
+      success: "Acompanhamento registrado."
+    update:
+      success: "Seguimiento modificados."
+  Show: "ver"
+  Destroy: "apagar"
+  user:
+    labels:
+      drc_user: "login"
+      intitution_name: "federação"
+    lables:
+      role: "regra"
+    profile: "perfil"
+  federation:
+    new_federation: "Nova federação"
+    labels:
+      name: "Nome"
+  people:
+    create:
+      success: "Pessoa criada."
+    index:
+      title: "Pessoas"
+    new_people: "Adicionar pessoa"
+  date:
+    formats:
+      default: "%e/%m/%Y"
+      short: "%e %b"
+      long: "%e de %B de %Y"
+    day_names:
+    - domingo
+    - lunes
+    - martes
+    - "miércoles"
+    - jueves
+    - viernes
+    - "sábado"
+    abbr_day_names:
+    - dom
+    - lun
+    - mar
+    - mie
+    - jue
+    - vie
+    - sab
+    month_names:
+    -
+    - enero
+    - febrero
+    - marzo
+    - abril
+    - mayo
+    - junio
+    - julio
+    - agosto
+    - septiembre
+    - octubre
+    - noviembre
+    - diciembre
+    abbr_month_names:
+    -
+    - ene
+    - feb
+    - mar
+    - abr
+    - may
+    - jun
+    - jul
+    - ago
+    - set
+    - oct
+    - nov
+    - dic
+    order:
+    - :day
+    - :month
+    - :year
+  time:
+    formats:
+      default: "%A, %e de %B de %Y, %H:%M hs"
+      short: "%e/%m, %H:%M hs"
+      long: "%A, %e de %B de %Y, %H:%M hs"
+    am: am
+    pm: pm
+    distance_in_words:
+      half_a_minute: meio minuto
+      less_than_x_seconds:
+        zero: menos de 1 segundo
+        one: menos de 1 segundo
+        other: menos de {{count}} segundos
+      x_seconds:
+        one: 1 second
+        other: "{{count}} seconds"
+      less_than_x_minutes:
+        zero: menos de 1 minuto
+        one: menos de 1 minuto
+        other: menos de {{count}} minutos
+      x_minutes:
+        one: 1 minuto
+        other: "{{count}} minutos"
+      about_x_hours:
+        one: aproximadamente 1 hora
+        other: aproximadamente {{count}} horas
+      x_days:
+        one: "1 dia"
+        other: "{{count}} dias"
+      about_x_months:
+        one: aproximandamente 1 mês
+        other: aproximadamente {{count}} mês
+      x_months:
+        one: 1 month
+        other: "{{count}} mês"
+      about_x_years:
+        one: "aproximadamente 1 ano"
+        other: "aproximadamente {{count}} anos"
+      over_x_years:
+        one: "mais de 1 ano"
+        other: "más de {{count}} anos"
+    prompts:
+      year:   "Ano"
+      month:  "Mês"
+      day:    "Dia"
+      hour:   "Hora"
+      minute: "Minuto"
+      second: "Segundos"
+
+  number:
+    percentage:
+      format:
+        delimiter: "."
+    precision:
+      format:
+        delimiter: "."
+    human:
+      format:
+        delimiter: "."
+        precision: "2"
+      storage_units:
+        format: "%n %u"
+        units:
+          byte:
+            one:   "byte"
+            other: "bytes"
+          kb: "KB"
+          mb: "MB"
+          gb: "GB"
+          tb: "TB"
+    format:
+      precision: 3
+      separator: ","
+      delimiter: .
+    currency:
+      format:
+        unit: $
+        precision: 2
+        format: "%u %n"
+        separator: ","
+        delimiter: "."
+  activerecord:
+    errors:
+      template:
+        header:
+          one: "Ocorreu um erro ao gravar as informações."
+          other: "{{count}} erros ocorreram ao gravas as informações."
+        body: "Os seguintes campos apresentam problemas:"
+      messages:
+        inclusion: "não incluído na lista"
+        exclusion: "não disponível"
+        invalid: "inválido"
+        confirmation: "não coincide com a confirmação"
+        accepted: deve ser aceitado
+        empty: "não pode estar vazio"
+        blank: não pode estar em branco
+        too_long: "longo demais (o máximo é de {{count}} caracteres)"
+        too_short: "curto demais (o mínimo é de {{count}} caracteres)"
+        wrong_length: "comprimento incorreto (deve ser de {{count}} caracteres)"
+        taken: "não disponível"
+        not_a_number: "não é um número"
+        greater_than: deve ser maior que {{count}}
+        greater_than_or_equal_to: deve ser maior ou igual a {{count}}
+        equal_to: deve ser igual a {{count}}
+        less_than: deve ser menor que {{count}}
+        less_than_or_equal_to: deve ser menor ou igual a {{count}}
+        odd: deve ser par
+        even: deve ser ímpar
+    models:
+      institution: "Instituição"
+      federation: "Federação"
+      aktion: "Ação"
+      goal: "Diretriz"
+      follow_up: "Seguimento"
+      person: "Pessoa"
+      user: "Usuário"
+    attributes:
+      goal:
+        intitution: "Instituição"
+        order_number: "Ordem"
+        objective: "Objetivo"
+        value: "Valor"
+        control_item: "Ítem de controle"
+        responsable: "Responsável"
+        due_on: "Encerra limite"
+  support:
+    array:
+      words_connector: ", "
+      two_words_connector: " y "
+      last_word_connector: " y "
+  back: "volver"
+  federations:
+    index:
+      title: "Federações"
+    new:
+      title: "Nova Federação"
+  confirm: "Confirma?"
+  person:
+    labels:
+      name: "Nome"
+      institution: "Instituição"
+  create: "Criar"
