@@ -35,6 +35,8 @@ es:
       title: "Directrices"
     show:
       title: "Desoblamiento de la directriz"
+    edit:
+      title: "Editando directriz"
     create:
       success: "Directriz creada."
     new:
@@ -256,6 +258,7 @@ es:
       user: "Usuario"
     attributes:
       goal:
+        goal: "Directriz 'padre'"
         intitution: "Institución"
         order_number: "Orden"
         objective: "Objetivo"
