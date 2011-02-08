@@ -1,5 +1,7 @@
 class Goal < ActiveRecord::Base
 
+  before_validation :default_order
+
   named_scope:visible_for, lambda { |user|
     unless %W(admin supervisor).include?(user.role)
       {:conditions => ["institution_id is null or institution_id = ?", user.institution.id]} unless user.institution.nil?
@@ -14,20 +16,28 @@ class Goal < ActiveRecord::Base
   belongs_to :responsable, :class_name => "Person"
   belongs_to :institution, :class_name => "Federation"
   
-  has_many(:aktions)
-  has_many(:goals)
-  has_many(:followups)
+  has_many(:aktions, :dependent => :destroy)
+  has_many(:goals, :dependent => :destroy)
+  has_many(:followups, :dependent => :destroy)
 
-  validate :or_goals_or_actions
+  validate :either_goals_or_actions
 
   def id_number
     self.ancestors_and_self.map{|g|g.order_number}.join('.')
   end
 
   private
-  def or_goals_or_actions
+  def either_goals_or_actions
     if !self.goals.empty? && !self.aktions.empty?
       self.errors.add_to_base t('goal.validations.goals_or_actions')
     end
   end
+
+  def default_order
+    if self.order_number.nil?
+      previous = self.self_and_siblings.last(:order => 'order_number asc')
+      self.order_number= previous.nil?? 1 : (previous.order_number + 1)
+    end
+  end
+
 end

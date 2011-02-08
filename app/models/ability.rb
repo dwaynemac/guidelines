@@ -34,7 +34,10 @@ class Ability
     if user.role == "federation_president" || user.role == "federation_responsable"
       # goal
       can :create, Goal
-      can :add_subgoals, Goal, :institution_id => user.institution_id
+
+      can :add_subgoals, Goal do |goal|
+        goal.institution == user.institution_id || goal.goal.nil?
+      end
       can :add_actions, Goal, :institution_id => user.institution_id
       can [:delete, :update], Goal, :institution_id => user.institution_id
 

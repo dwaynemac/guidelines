@@ -33,7 +33,7 @@ class GoalsController < ApplicationController
   # GET /goals/new
   # GET /goals/new.xml
   def new
-
+    
     # federation user can only create his own goals
     @goal.institution_id=current_user.institution_id
 
