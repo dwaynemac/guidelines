@@ -2,13 +2,15 @@
 
 <table>
   <tr>
-    <th><%= t('person.labels.name') %></th>
-    <th><%= t('person.labels.institution') %></th>
+    <th><%= t('activerecord.attributes.person.name') %></th>
+    <th><%= t('activerecord.attributes.person.email') %></th>
+    <th><%= t('activerecord.attributes.person.institution') %></th>
   </tr>
 
 <% @people.each do |person| %>
   <tr>
     <td><%=h person.name %></td>
+    <td><%=h person.email %></td>
     <td><%=h person.institution.try :name %></td>
     <%- if can? :modify, person -%>
       <td><%= link_to( t('Edit'), edit_person_path(person)) if can? :update, person %></td>

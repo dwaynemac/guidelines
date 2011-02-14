@@ -1,4 +1,10 @@
-<table>
+<style type="text/css">
+  #goals {
+    width: 100%;
+  }
+</style>
+
+<table id="goals" border="1">
   <tr>
     <th></th>
     <th><%= t('goal.labels.objective') %></th>
@@ -16,7 +22,7 @@
       <td><%= h goal.responsable.try :name %></td>
       <td><%=h goal.institution.try :name %></td>
       <td><%= link_to( t('Edit'), edit_goal_path(goal)) if can? :update, goal %></td>
-      <td><%= link_to(t('destroy'), goal_path(goal), :method => :delete, :confirm => t('confirm')) if can? :delete, goal %></td>
+      <td><%= link_to(t('destroy'), goal_path(goal), :method => :delete, :confirm => t('confirm')) if can? :destroy, goal %></td>
     </tr>
   <% end %>
 </table>

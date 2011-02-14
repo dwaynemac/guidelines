@@ -23,31 +23,6 @@
 </div>
 
 <div id="followup">
-  <!--<div id="followup_graph"></div>
-  <script type="text/javascript">
-    var fowup_chart;
-    $(document).ready(function(){
-      fowup_chart = new Highcharts.Chart({
-        chart: {
-          renderTo: 'followup_graph',
-          defaultSeriesType: 'line'
-        },
-        title: { text: 'Followup' },
-        xAxis: {
-          categories: [<%= @categories.try :join, ','%>]
-        },
-        yAxis: {
-          title: {
-            text: '<%= @goal.control_item %>'
-          }
-        },
-        series: [
-          <%= @series-%>
-        ]
-      });
-    });
-  </script>-->
-
   <%= render :partial => 'followups/table', :locals => { :followups => @goal.followups, :goal => @goal } %>
   <%= link_to(t('goal.add_followup'), new_goal_followup_path(:goal_id => @goal.id)) if can? :create, Followup%>
 </div>

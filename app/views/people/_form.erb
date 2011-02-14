@@ -1,0 +1,9 @@
+<%- f.inputs do -%>
+  <%= f.input :name %>
+  <%= f.input :email %>
+  <%- if can? :create_for_other_institutions, Person -%>
+    <%= f.input :institution %>
+  <%- else -%>
+    <%= f.input :institution_id, :as => :hidden, :value => current_user.institution_id %>
+  <%- end -%>
+<%- end -%>

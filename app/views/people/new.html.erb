@@ -1,7 +1,7 @@
 <h1>New person</h1>
 
 <%- semantic_form_for @person do |f| -%>
-  <%= f.inputs :name, :institution %>
+  <%= render :partial => 'form', :locals => {:f => f} %>
   <%- f.buttons do %>
     <%= f.commit_button %>
   <%- end -%>

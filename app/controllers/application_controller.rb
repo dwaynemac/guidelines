@@ -4,11 +4,13 @@ class ApplicationController < ActionController::Base
   include AuthSystem
   include DRCClient::HelperMethods
 
+=begin
   before_filter :mock_login
   def mock_login
-    session[:cas_user] = "dwayne.macgowan"
+    session[:cas_user] = "diego.ouje"
   end
-  #before_filter DRCClient.filter
+=end
+  before_filter DRCClient.filter
 
   before_filter :create_local_user_if_required
   before_filter :login_required

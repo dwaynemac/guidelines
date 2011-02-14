@@ -4,7 +4,8 @@ class PeopleController < ApplicationController
   # GET /people
   # GET /people.xml
   def index
-    @people = Person.all
+    # @people = Person.accesible_by() -- loaded in load_and_authorize_resource, its a scope.
+
     respond_to do |format|
       format.html # index.html.erb
       format.xml  { render :xml => @people }

@@ -28,6 +28,8 @@ class Ability
 
     can :read, :all
     cannot :read, [User, Federation, Person]
+
+    
     can [:profile,:update], User, :id => user.id
 
     # Abilities for Federation president and vice-president. (e.g.: Edgardo)
@@ -36,16 +38,17 @@ class Ability
       can :create, Goal
 
       can :add_subgoals, Goal do |goal|
-        goal.institution_id == user.institution_id || goal.goal.nil?
+        goal.institution == user.institution_id || goal.goal.try(:goal).nil?
       end
       can :add_actions, Goal, :institution_id => user.institution_id
-      can [:delete, :update], Goal, :institution_id => user.institution_id
+      can [:destroy, :update], Goal, :institution_id => user.institution_id
 
       # followup
       can :manage, Followup, :goal => {:institution_id => user.institution_id}
 
       # person
-      can [:update, :delete], Person, :institution_id => user.institution_id
+      can :manage, Person, :institution_id => user.institution_id
+      cannot :create_for_other_institutions, Person
 
       # aktion
       can :manage, Aktion do |aktion|

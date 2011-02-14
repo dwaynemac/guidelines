@@ -32,7 +32,7 @@ es:
       subgoals: "Projectos"
     index:
       new_goal: "Nueva directriz"
-      title: "Directrices"
+      title: "Directrices de la Red"
     show:
       title: "Desoblamiento de la directriz"
     edit:
@@ -41,6 +41,8 @@ es:
       success: "Directriz creada."
     new:
       title: "Nueva directriz"
+    form:
+      create_responsable_at: "Si no esta el responsable agréguelo en %{people}."
   goal:
     labels:
       responsable: "Responsable"
@@ -266,6 +268,18 @@ es:
         control_item: "Item de control"
         responsable: "Responsable"
         due_on: "Fecha límite"
+      aktion:
+        what: "Qué"
+        how: "Cómo"
+        why: "Porqué"
+        where: "Dónde"
+        who: "Quién"
+        begins_on: "Comienza en"
+        ends_on: "Termina en"
+      person:
+        name: "Nombre"
+        email: "E-mail"
+        institution: "Institución"
   support:
     array:
       words_connector: ", "
