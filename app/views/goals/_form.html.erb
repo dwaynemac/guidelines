@@ -1,5 +1,8 @@
 <%- f.inputs do -%>
   <%= @goal.institution_id.nil?? f.input(:institution) : f.input(:institution_id, :as => :hidden) -%>
+  <%- if can? :manage, Goal -%>
+    <%= f.inputs :order_number %>
+  <%- end -%>
   <%= f.inputs :objective, :value, :control_item -%>
   <%= f.input :responsable, :collection => @people, :hint => t('goals.form.create_responsable_at', :people => Person.human_name.pluralize) %>
   <%= f.input(:due_on, :as => :string, :input_html => {:class => 'datepicker'}) %>
