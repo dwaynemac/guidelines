@@ -52,6 +52,7 @@ es:
       due_on: "Fecha límite"
       objective: "Objetivo"
       value_and_due_date: "Valor y plazo"
+      institution: "Federación"
     add_followup: "Registrar seguimiento"
   navbar:
     goals: "Directrices"
@@ -302,3 +303,4 @@ es:
     create:
       success: "Usuario creado"
     new_user: "nuevo usuario"
+  detail: "detalle"
