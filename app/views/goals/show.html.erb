@@ -1,7 +1,9 @@
 <h1>
   <span title='<%= "#{@goal.value} #{@goal.control_item} @ #{l(@goal.due_on)}" %>'><%= @goal.id_number %> - <%=h @goal.objective %></span>
 </h1>
-
+<div>
+  <%= link_to(h("<< #{t('back')}"), @goal.goal.nil? ? goals_url : goal_url(@goal.goal)) %>
+</div>
 <!-- desdoblamiento de la directriz -->
 <div id="subgoals">
   <%- unless @goal.children.empty? -%>
