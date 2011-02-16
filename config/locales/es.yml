@@ -43,6 +43,8 @@ es:
       title: "Nueva directriz"
     form:
       create_responsable_at: "Si no esta el responsable agréguelo en %{people}."
+    table:
+      subtotal: "Subtotales"
   goal:
     labels:
       responsable: "Responsable"
@@ -54,6 +56,8 @@ es:
       value_and_due_date: "Valor y plazo"
       institution: "Federación"
     add_followup: "Registrar seguimiento"
+    validations:
+      due_on_after_parent_due_on: "La fecha limite no puede ser posterior a la fecha límita de la directriz padre."
   navbar:
     goals: "Directrices"
     users: "Usuarios"

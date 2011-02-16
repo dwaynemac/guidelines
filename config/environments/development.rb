@@ -16,8 +16,11 @@ config.action_controller.perform_caching             = false
 # Don't care if the mailer can't send
 config.action_mailer.raise_delivery_errors = false
 
-DRC_URL = 'https://www.metododerose.org:8443'
+config.gem "shoulda"
+config.gem "factory_girl"
+config.gem 'faker'
 
+DRC_URL = 'https://www.metododerose.org:8443'
 
 PADMA_KEY = ''
 PADMA_SECRET = ''

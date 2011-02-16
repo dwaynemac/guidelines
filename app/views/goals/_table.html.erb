@@ -2,6 +2,9 @@
   #goals {
     width: 100%;
   }
+  .subtotal {
+    font-weight:bold;
+  }
 </style>
 
 <table id="goals" border="1">
@@ -27,4 +30,18 @@
       <td><%= link_to(t('destroy'), goal_path(goal), :method => :delete, :confirm => t('confirm')) if can? :destroy, goal %></td>
     </tr>
   <% end %>
+
+  <%- unless @goal.nil? -%>
+    <tr>
+      <th colspan="5"><%= t('.subtotal') %></th>
+    </tr>
+    <%- @goal.implicit_goals.each do |k, v| -%>
+      <tr class="subtotal">
+        <td colspan="3"></td>
+        <td><%= k %></td>
+        <td><%= v %></td>
+        <td></td>
+      </tr>
+    <%- end -%>
+  <%- end -%>
 </table>

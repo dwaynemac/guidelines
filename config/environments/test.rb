@@ -34,6 +34,6 @@ PADMA_API_URI = 'http://localhost:3000'
 
 config.gem "faker"
 config.gem "machinist", :source => "http://gemcutter.org"
-config.gem thoughtbot-shoulda, :source  => "http://gems.github.com", :lib => shoulda, :version =>  2.0.6
+config.gem 'thoughtbot-shoulda', :source  => "http://gems.github.com", :lib => 'shoulda', :version =>  2.0.6
 config.gem "mocha"
 

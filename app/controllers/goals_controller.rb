@@ -79,6 +79,7 @@ class GoalsController < ApplicationController
         format.html { redirect_to(@goal, :notice => 'Goal was successfully updated.') }
         format.xml  { head :ok }
       else
+        edit # run edit method for variables needed in form.
         format.json { render :json => jeditable_result(@goal, false)}
         format.html { render :action => "edit" }
         format.xml  { render :xml => @goal.errors, :status => :unprocessable_entity }

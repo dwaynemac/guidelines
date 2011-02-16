@@ -4,6 +4,7 @@
 <div>
   <%= link_to(h("<< #{t('back')}"), @goal.goal.nil? ? goals_url : goal_url(@goal.goal)) %>
 </div>
+
 <!-- desdoblamiento de la directriz -->
 <div id="subgoals">
   <%- unless @goal.children.empty? -%>
