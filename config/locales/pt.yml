@@ -39,6 +39,8 @@ pt:
       success: "Diretriz criada."
     new:
       title: "Nova diretriz"
+    table:
+      subtotal: "Subtotal"
   goal:
     labels:
       institution: "Instituição"
