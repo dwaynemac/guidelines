@@ -89,10 +89,12 @@ class GoalsController < ApplicationController
   # DELETE /goals/1
   # DELETE /goals/1.xml
   def destroy
+    return_to = @goal.goal.nil?? goals_url : goal_url(@goal.goal)
+
     @goal.destroy
 
     respond_to do |format|
-      format.html { redirect_to(goals_url) }
+      format.html { redirect_to(return_to) }
       format.xml  { head :ok }
     end
   end
