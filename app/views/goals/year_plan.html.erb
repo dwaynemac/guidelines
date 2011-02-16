@@ -40,7 +40,7 @@
   </tr>
   <%- @subgoals.each do |goal| -%>
     <tr>
-      <td><%= link_to_if can?(:read, goal), "#{goal.id_number}<br/>#{goal.objective}", goal %></td>
+      <td><%= link_to_if can?(:read, goal), "#{"#{goal.institution.name}<br/>" unless goal.institution.nil?}#{goal.id_number} - #{goal.objective}", goal %></td>
       <%- @roots.each do |root| -%>
         <td>
           <%- if goal.ancestors.include?(root)-%>

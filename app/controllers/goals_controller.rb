@@ -103,7 +103,7 @@ class GoalsController < ApplicationController
   def year_plan
     authorize! :see, :year_plan
     @roots = Goal.roots
-    @subgoals = Goal.all(:conditions => "goal_id is not null")
+    @subgoals = Goal.all(:conditions => "goal_id is not null", :include => :institution)
     @subgoals.sort!{|a,b| a.id_number <=> b.id_number }
     respond_to do |format|
       format.html
