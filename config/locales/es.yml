@@ -309,3 +309,6 @@ es:
       success: "Usuario creado"
     new_user: "nuevo usuario"
   detail: "detalle"
+  aktions:
+    edit:
+      title: "Editando acción"

@@ -1,5 +1,11 @@
+<style type="text/css">
+  table {
+    width: 100%;
+  }
+</style>
+
 <h1><%= t('actions.action_plan') %></h1>
-<table>
+<table border="1">
   <tr>
     <th><%= t('action.labels.what') %></th>
     <th><%= t('action.labels.how') %></th>
@@ -10,14 +16,17 @@
   </tr>
   <%- aktions.each do |aktion| -%>
     <tr>
-      <td><%=h aktion.what %></td>
-      <td><%=h aktion.how %></td>
-      <td><%=h aktion.why %></td>
-      <td><%=h aktion.where %></td>
+      <%- url = goal_aktion_url(:goal_id => @goal.id, :id => aktion.id) -%>
+      <td><%= show_field(:aktion, :what, aktion, :url => url) %></td>
+      <td><%= show_field(:aktion, :how, aktion, :url => url) %></td>
+      <td><%= show_field(:aktion, :why, aktion, :url => url) %></td>
+      <td><%= show_field(:aktion, :where, aktion, :url => url) %></td>
       <td><%=h aktion.who.try(:name) %></td>
       <td><%=l aktion.begins_on %> - <%=l aktion.ends_on %></td>
       <td>
-        <%= link_to(t('edit'), edit_goal_aktion_path([@goal, aktion])) if can? :update, aktion %>
+        <%= link_to(t('edit'), edit_goal_aktion_path(:goal_id => @goal.id, :id => aktion.id)) if can? :update, aktion %>
+      </td>
+      <td>
         <%= link_to(t('destroy'), [@goal, aktion], :method => :delete, :confirm => t('confirm_destroy')) if can? :delete, aktion %>
       </td>
     </tr>

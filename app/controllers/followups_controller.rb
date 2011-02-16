@@ -28,7 +28,7 @@ class FollowupsController < ApplicationController
   # GET /followups/new
   # GET /followups/new.xml
   def new
-
+    @followup.valid_on= Time.zone.today
     respond_to do |format|
       format.html # new.html.erb
       format.xml  { render :xml => @followup }

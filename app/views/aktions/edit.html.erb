@@ -1,7 +1,7 @@
-<h1>Editing action</h1>
+<h1><%= t('.title') %></h1>
 
 <%- if params[:goal_id]
-      scope = [:goal, @aktion]
+      scope = [@goal, @aktion]
     else
       scope = @aktion
     end -%>
@@ -16,5 +16,4 @@
   <%- end -%>
 <%- end -%>
 
-<%= link_to 'Show', @aktion %> |
-<%= link_to 'Back', aktions_path %>
+<%= link_to 'Back', @goal %>

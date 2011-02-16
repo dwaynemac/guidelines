@@ -1,6 +1,11 @@
 # Methods added to this helper will be available to all templates in the application.
 module ApplicationHelper
 
+  def show_field(object_name,attribute_name,object,other_options)
+    options = other_options.merge({:object => object})
+    can?(:update, object)? jeditable_field(object_name,attribute_name,options) : object.send(attribute_name)
+  end
+
   def success_widget(message)
     return if message.nil?
     message_widget(:icon => 'check', :state => 'highlight', :label => 'OK', :message => message)

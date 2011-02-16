@@ -60,9 +60,11 @@ class AktionsController < ApplicationController
   def update
     respond_to do |format|
       if @aktion.update_attributes(params[:aktion])
-        format.html { redirect_to(goal_url(:id => params[:goal_id]), :notice => t('aktions.update.success')) }
+        format.json { render :json => jeditable_result(@aktion,true) }
+        format.html { redirect_to(goal_url(:id => @aktion.goal_id), :notice => t('aktions.update.success')) }
         format.xml  { head :ok }
       else
+        format.json { render :json => jeditable_result(@aktion,false) }
         format.html { render :aktion => "edit" }
         format.xml  { render :xml => @aktion.errors, :status => :unprocessable_entity }
       end
