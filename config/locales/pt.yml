@@ -289,4 +289,6 @@ pt:
       success: "Usuário criado"
     new_user: "novo usuário"
   detail: "detalhe"
-
+  aktions:
+    edit:
+      title: "Editando acción"
