@@ -27,7 +27,7 @@
 
 <div id="followup">
   <%= render :partial => 'followups/table', :locals => { :followups => @goal.followups, :goal => @goal } %>
-  <%= link_to(t('goal.add_followup'), new_goal_followup_path(:goal_id => @goal.id)) if can? :create, Followup%>
+  <%= link_to(t('goal.add_followup'), new_goal_followup_path(:goal_id => @goal.id)) if can? :create, @goal => Followup %>
 </div>
 
 <div>
