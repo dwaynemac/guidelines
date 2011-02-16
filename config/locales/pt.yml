@@ -41,6 +41,7 @@ pt:
       title: "Nova diretriz"
   goal:
     labels:
+      institution: "Instituição"
       responsable: "Responsável"
       control_item: "Item de controle"
       value: "valor"
@@ -58,6 +59,7 @@ pt:
   followup:
     labels:
       value: "valor"
+      valid_on: "Data"
   followups:
     new:
       title: "Novo acompanhamento"
@@ -279,3 +281,10 @@ pt:
       name: "Nome"
       institution: "Instituição"
   create: "Criar"
+  page_title: "Seguimiento de Directrices"
+  users:
+    create:
+      success: "Usuário criado"
+    new_user: "novo usuário"
+  detail: "detalhe"
+
