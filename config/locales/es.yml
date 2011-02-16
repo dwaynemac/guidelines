@@ -81,6 +81,7 @@ es:
     labels:
       drc_user: "login"
       intitution_name: "federación"
+      allowed: "autorizado"
     lables:
       role: "rol"
     profile: "perfil"
