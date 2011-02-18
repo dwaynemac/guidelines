@@ -31,7 +31,8 @@
     </tr>
   <% end %>
 
-  <%- unless @goal.nil? -%>
+  <!-- ONLY SHOW SUBTOTALS FOR root#show , very Insights specific -->
+  <%- if !@goal.nil? && @goal.root? -%>
     <tr>
       <th colspan="5"><%= t('.subtotal') %></th>
     </tr>
