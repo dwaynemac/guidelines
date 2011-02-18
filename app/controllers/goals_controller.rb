@@ -37,7 +37,11 @@ class GoalsController < ApplicationController
     # federation user can only create his own goals
     @goal.institution_id=current_user.institution_id
 
-    institution = current_user.institution
+    if @goal.institution_id.nil?
+      @goal.institution_id = @parent_goal.try(:institution_id)
+    end
+
+    institution = @goal.institution
     @people = institution.nil?? Person.all : institution.people.all
 
     respond_to do |format|
@@ -113,7 +117,8 @@ class GoalsController < ApplicationController
   private
   def set_scope
     if params[:goal_id]
-      @scope = Goal.find(params[:goal_id]).goals
+      @parent_goal = Goal.find(params[:goal_id])
+      @scope = @parent_goal.goals
     else
       @scope = Goal
     end
