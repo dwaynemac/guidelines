@@ -32,7 +32,7 @@
   <% end %>
 
   <!-- ONLY SHOW SUBTOTALS FOR root#show , very Insights specific -->
-  <%- if !@goal.nil? && @goal.root? -%>
+  <%- if !@goal.nil? && @goal.goal_id.nil? -%>
     <tr>
       <th colspan="5"><%= t('.subtotal') %></th>
     </tr>
