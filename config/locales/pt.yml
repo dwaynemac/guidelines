@@ -30,6 +30,9 @@ pt:
     add_action: "Adicionar ação ao plano de ação"
     year_plan:
       subgoals: "Projetos"
+      low: "fraca"
+      strong: "forte" 
+      medium: "média"
     index:
       new_goal: "Nova diretriz"
       title: "Diretrizes"

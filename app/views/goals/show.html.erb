@@ -8,7 +8,7 @@
 <!-- desdoblamiento de la directriz -->
 <div id="subgoals">
   <%- unless @goal.children.empty? -%>
-    <%= render :partial => 'table', :locals => {:goals => @goal.descendants } %>
+    <%= render :partial => 'table', :locals => {:goals => @goal.children } %> # TODO if layout is cleaner @goal.descendants could be used intead of @goal.children
   <%- end -%>
   <%- if can? :add_subgoals, @goal -%>
     <%= link_to(t('goals.add_subgoal'), new_goal_goal_path(:goal_id => @goal))  if @goal.aktions.empty? %>

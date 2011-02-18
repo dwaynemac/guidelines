@@ -76,7 +76,7 @@ class GoalsController < ApplicationController
     respond_to do |format|
       if @goal.update_attributes(params[:goal])
         format.json { render :json => jeditable_result(@goal,true) }
-        format.html { redirect_to(@goal, :notice => 'Goal was successfully updated.') }
+        format.html { redirect_to(@goal, :notice => t('goals.update.success')) }
         format.xml  { head :ok }
       else
         edit # run edit method for variables needed in form.
@@ -103,7 +103,7 @@ class GoalsController < ApplicationController
   def year_plan
     authorize! :see, :year_plan
     @roots = Goal.roots
-    @subgoals = Goal.all(:conditions => "goal_id is not null", :include => :institution)
+    @subgoals = Goal.all(:conditions => {:goal_id => Goal.roots.map{|g|g.id}}, :include => :institution)
     @subgoals.sort!{|a,b| a.id_number <=> b.id_number }
     respond_to do |format|
       format.html

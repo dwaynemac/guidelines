@@ -36,6 +36,20 @@ class Goal < ActiveRecord::Base
     self.goals.sum(:value, :group => :control_item)
   end
 
+  INCIDENCE_NAMES = {1 => I18n.t('goals.year_plan.low'),2 => I18n.t('goals.year_plan.medium'),3 => I18n.t('goals.year_plan.strong')}
+
+  # sets attribute incidence according to string
+  # @argument [String] incidence name
+  # @return incidence number
+  def incidence_name=(string)
+    INCIDENCE_NAMES.invert[string]
+  end
+
+  # @return [String] incidence name
+  def incidence_name
+    INCIDENCE_NAMES[self.incidence]
+  end
+
   private
 
   def either_goals_or_actions

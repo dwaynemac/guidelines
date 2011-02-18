@@ -45,7 +45,7 @@
       <%- @roots.each do |root| -%>
         <td>
           <%- if goal.ancestors.include?(root)-%>
-            <%= jeditable_field :goal, :incidence, {:object => goal, :type => :select, :select_collection => {1 => 'bajo',2 => 'medio',3 => 'alto'}.to_json} %>
+            <%= jeditable_field :goal, :incidence, {:object => goal, :type => :select, :select_collection => Goal::INCIDENCE_NAMES.to_json} %>
           <%- else -%>
             -
           <%- end -%>

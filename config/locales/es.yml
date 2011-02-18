@@ -7,6 +7,7 @@ es:
     tooltip: 'click para editar'
     submit: "enviar"
     cancel: "cancelar"
+    error_saving: "error al guardar"
   action:
     labels:
       what: "Qué"
@@ -30,6 +31,9 @@ es:
     add_action: "Agregar acción al plan de acción"
     year_plan:
       subgoals: "Projectos"
+      low: "débil"
+      strong: "fuerte"
+      medium: "medio"
     index:
       new_goal: "Nueva directriz"
       title: "Directrices de la Red"

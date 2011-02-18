@@ -40,6 +40,8 @@ en:
       title: "Unfolding goal"
     create:
       success: "Goal was successfully created."
+    update:
+      success: "Goal was successfully updated."
   goal:
     labels:
       responsable: "Responsable"
