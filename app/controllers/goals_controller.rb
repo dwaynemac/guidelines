@@ -54,7 +54,7 @@ class GoalsController < ApplicationController
   def edit
     @goals = Goal.all - @goal.descendants - [@goal]
 
-    institution = current_user.institution
+    institution = @goal.institution
     @people = institution.nil?? Person.all : institution.people.all
 
     @goals.sort!{|a,b| a.id_number <=> b.id_number}
