@@ -5,6 +5,10 @@
   .subtotal {
     font-weight:bold;
   }
+
+  .not-my-goal {
+      font-size: 0.75em;
+  }
 </style>
 
 <table id="goals" border="1">
@@ -18,7 +22,7 @@
   </tr>
 
   <% goals.each do |goal| %>
-    <tr>
+    <tr <%="class='not-my-goal'" if (!current_user.institution_id.nil? && goal.institution_id != current_user.institution_id)%>>
       <td><%= h link_to_if(can?(:read, goal),goal.id_number,goal) %></td>
       <td><%=h goal.institution.try :name %></td>
       <td><%= can?(:update, goal)? jeditable_field(:goal, :objective, :object => goal ) : goal.objective %></td>
