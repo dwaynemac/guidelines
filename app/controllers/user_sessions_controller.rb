@@ -16,7 +16,7 @@ class UserSessionsController < ApplicationController
   end
 
   def destroy
-    current_user_session.destroy
+    current_user_session.try(:destroy)
     DRCClient.logout(self)
   end
 end

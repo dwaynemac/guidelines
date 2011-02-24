@@ -1,0 +1,393 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE html 
+     PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+     "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head>
+  <title>Module: ApplicationHelper</title>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+  <meta http-equiv="Content-Script-Type" content="text/javascript" />
+  <link rel="stylesheet" href=".././rdoc-style.css" type="text/css" media="screen" />
+  <script type="text/javascript">
+  // <![CDATA[
+
+  function popupCode( url ) {
+    window.open(url, "Code", "resizable=yes,scrollbars=yes,toolbar=no,status=no,height=150,width=400")
+  }
+
+  function toggleCode( id ) {
+    if ( document.getElementById )
+      elem = document.getElementById( id );
+    else if ( document.all )
+      elem = eval( "document.all." + id );
+    else
+      return false;
+
+    elemStyle = elem.style;
+    
+    if ( elemStyle.display != "block" ) {
+      elemStyle.display = "block"
+    } else {
+      elemStyle.display = "none"
+    }
+
+    return true;
+  }
+  
+  // Make codeblocks hidden by default
+  document.writeln( "<style type=\"text/css\">div.method-source-code { display: none }</style>" )
+  
+  // ]]>
+  </script>
+
+</head>
+<body>
+
+
+
+    <div id="classHeader">
+        <table class="header-table">
+        <tr class="top-aligned-row">
+          <td><strong>Module</strong></td>
+          <td class="class-name-in-header">ApplicationHelper</td>
+        </tr>
+        <tr class="top-aligned-row">
+            <td><strong>In:</strong></td>
+            <td>
+                <a href="../files/app/helpers/application_helper_rb.html">
+                app/helpers/application_helper.rb
+                </a>
+        <br />
+            </td>
+        </tr>
+
+        </table>
+    </div>
+  <!-- banner header -->
+
+  <div id="bodyContent">
+
+
+
+  <div id="contextContent">
+
+    <div id="description">
+      <p>
+Methods added to this helper will be available to all templates in the
+application.
+</p>
+
+    </div>
+
+
+   </div>
+
+    <div id="method-list">
+      <h3 class="section-bar">Methods</h3>
+
+      <div class="name-list">
+      <a href="#M000059">alert_widget</a>&nbsp;&nbsp;
+      <a href="#M000061">jeditable_field</a>&nbsp;&nbsp;
+      <a href="#M000060">message_widget</a>&nbsp;&nbsp;
+      <a href="#M000058">notice_widget</a>&nbsp;&nbsp;
+      <a href="#M000056">show_field</a>&nbsp;&nbsp;
+      <a href="#M000057">success_widget</a>&nbsp;&nbsp;
+      </div>
+    </div>
+
+  </div>
+
+
+    <!-- if includes -->
+
+    <div id="section">
+
+
+
+
+
+      
+
+
+    <!-- if method_list -->
+    <div id="methods">
+      <h3 class="section-bar">Public Instance methods</h3>
+
+      <div id="method-M000059" class="method-detail">
+        <a name="M000059"></a>
+
+        <div class="method-heading">
+          <a href="#M000059" class="method-signature">
+          <span class="method-name">alert_widget</span><span class="method-args">(message)</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+          <p><a class="source-toggle" href="#"
+            onclick="toggleCode('M000059-source');return false;">[Source]</a></p>
+          <div class="method-source-code" id="M000059-source">
+<pre>
+    <span class="ruby-comment cmt"># File app/helpers/application_helper.rb, line 20</span>
+20:   <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">alert_widget</span>(<span class="ruby-identifier">message</span>)
+21:     <span class="ruby-keyword kw">return</span> <span class="ruby-keyword kw">if</span> <span class="ruby-identifier">message</span>.<span class="ruby-identifier">nil?</span>
+22:     <span class="ruby-identifier">message_widget</span>(<span class="ruby-identifier">:icon</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-value str">'alert'</span>, <span class="ruby-identifier">:state</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-value str">'alert'</span>, <span class="ruby-identifier">:label</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-value str">'Alert'</span>, <span class="ruby-identifier">:message</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-identifier">message</span>)
+23:   <span class="ruby-keyword kw">end</span>
+</pre>
+          </div>
+        </div>
+      </div>
+
+      <div id="method-M000061" class="method-detail">
+        <a name="M000061"></a>
+
+        <div class="method-heading">
+          <a href="#M000061" class="method-signature">
+          <span class="method-name">jeditable_field</span><span class="method-args">(object_name, field_name, options = {})</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+          <p>
+Render jeditable in place edit field. TODO: h for safety TODO: select
+include_blank
+</p>
+<h2>Valid Options:</h2>
+<ul>
+<li>object: defaults to @object_name
+
+</li>
+<li>type: default to text. If &#8216;select&#8217; then select_collection is
+required.
+
+</li>
+<li>select_collection: json array of options for select dropdown.
+
+</li>
+<li>select_loadurl: url to get json for collection. overrides select_collection
+
+</li>
+<li>rows: jeditable rows defaults to 1
+
+</li>
+<li>print: this will be called on object and printed. defaults to field_name.
+Example: category.name will call object.category.name
+
+</li>
+<li>url: URL for request
+
+</li>
+<li>style: jeditable style
+
+</li>
+</ul>
+<p>
+Will submit to url_for(object) While data transfer is in progress CSS class
+&#8216;editing&#8217; is assigned.
+</p>
+<p>
+In controller response should be
+</p>
+<pre>
+  &lt;tt&gt;format.json { render :json =&gt; jeditable_result(@transaction, true) }&lt;/tt&gt; for success.
+  &lt;tt&gt;format.json { render :json =&gt; jeditable_result(@transaction, false) }&lt;/tt&gt; for failure.
+</pre>
+          <p><a class="source-toggle" href="#"
+            onclick="toggleCode('M000061-source');return false;">[Source]</a></p>
+          <div class="method-source-code" id="M000061-source">
+<pre>
+     <span class="ruby-comment cmt"># File app/helpers/application_helper.rb, line 58</span>
+ 58:   <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">jeditable_field</span>(<span class="ruby-identifier">object_name</span>, <span class="ruby-identifier">field_name</span>, <span class="ruby-identifier">options</span> = {})
+ 59: 
+ 60:     <span class="ruby-identifier">options</span>.<span class="ruby-identifier">reverse_merge!</span>({<span class="ruby-identifier">:type</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-value str">'text'</span>, <span class="ruby-identifier">:rows</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-value str">'1'</span>})
+ 61: 
+ 62:     <span class="ruby-identifier">object</span> = <span class="ruby-identifier">options</span>[<span class="ruby-identifier">:object</span>] <span class="ruby-operator">||</span> <span class="ruby-keyword kw">self</span>.<span class="ruby-identifier">instance_variable_get</span>(<span class="ruby-node">&quot;@#{object_name}&quot;</span>)
+ 63: 
+ 64:     <span class="ruby-keyword kw">if</span> <span class="ruby-identifier">options</span>[<span class="ruby-identifier">:print</span>].<span class="ruby-identifier">blank?</span>
+ 65:       <span class="ruby-identifier">field</span> = <span class="ruby-identifier">object</span>.<span class="ruby-identifier">send</span>(<span class="ruby-identifier">field_name</span>)
+ 66:       <span class="ruby-identifier">wants</span> = <span class="ruby-identifier">field_name</span>
+ 67:     <span class="ruby-keyword kw">else</span>
+ 68:       <span class="ruby-identifier">tokens</span> = <span class="ruby-identifier">options</span>[<span class="ruby-identifier">:print</span>].<span class="ruby-identifier">split</span>(<span class="ruby-value str">'.'</span>)
+ 69:       <span class="ruby-identifier">field</span> = <span class="ruby-identifier">object</span>
+ 70:       <span class="ruby-identifier">tokens</span>.<span class="ruby-identifier">each</span> <span class="ruby-keyword kw">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">t</span><span class="ruby-operator">|</span>
+ 71:         <span class="ruby-identifier">field</span> = <span class="ruby-identifier">field</span>.<span class="ruby-identifier">send</span>(<span class="ruby-identifier">t</span>) <span class="ruby-keyword kw">unless</span> <span class="ruby-identifier">field</span>.<span class="ruby-identifier">nil?</span>
+ 72:       <span class="ruby-keyword kw">end</span>
+ 73:       <span class="ruby-identifier">wants</span> = <span class="ruby-identifier">options</span>[<span class="ruby-identifier">:print</span>]
+ 74:     <span class="ruby-keyword kw">end</span>
+ 75: 
+ 76:     <span class="ruby-keyword kw">case</span> <span class="ruby-identifier">options</span>[<span class="ruby-identifier">:type</span>].<span class="ruby-identifier">to_s</span>
+ 77:       <span class="ruby-keyword kw">when</span> <span class="ruby-value str">'select'</span>
+ 78:         <span class="ruby-identifier">submit</span> = <span class="ruby-node">%(
+ 79:         submit   : '#{t('jeditable.submit')}',
+ 80:         cancel   : '#{t('jeditable.cancel')}',
+ 81:         onblur   : function() {
+ 82:             $(this).removeClass('editing');
+ 83:           },
+ 84:         )</span>
+ 85:       <span class="ruby-keyword kw">when</span> <span class="ruby-value str">'text'</span>
+ 86:         <span class="ruby-identifier">submit</span> = <span class="ruby-value str">%(
+ 87:         onblur   : function() {
+ 88:             this.reset();
+ 89:             $(this).removeClass('editing');
+ 90:           },
+ 91:         )</span>
+ 92:       <span class="ruby-keyword kw">when</span> <span class="ruby-value str">'datepicker'</span>
+ 93:         <span class="ruby-identifier">submit</span> = <span class="ruby-value str">%(
+ 94:         onblur   : function() {
+ 95:             this.reset();
+ 96:             $(this).removeClass('editing');
+ 97:           },
+ 98:         )</span>
+ 99:     <span class="ruby-keyword kw">end</span>
+100: 
+101:     <span class="ruby-identifier">output</span> = <span class="ruby-identifier">content_tag</span>(<span class="ruby-identifier">:span</span>, <span class="ruby-identifier">field</span>, {<span class="ruby-identifier">:id</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-node">&quot;jeditable_#{dom_id object}_#{field_name}&quot;</span>, <span class="ruby-identifier">:class</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-value str">&quot;jeditable&quot;</span>})
+102:     <span class="ruby-identifier">output</span> <span class="ruby-operator">&lt;&lt;</span> <span class="ruby-identifier">javascript_tag</span> <span class="ruby-keyword kw">do</span> <span class="ruby-node">%(
+103:       $(document).ready(function() {
+104:         $('#jeditable_#{dom_id object}_#{field_name}').editable(
+105:           function(value, settings) {
+106:             var result;
+107:             $.ajax({
+108:               type: 'PUT',
+109:               url: '#{options[:url] || url_for(object)}' ,
+110:               async: false,
+111:               data: {
+112:                 authenticity_token: #{form_authenticity_token.to_json },
+113:                 wants: '#{wants}',
+114:                 '#{object_name}[#{field_name}]' : value
+115:               },
+116:               dataType: 'json',
+117:               success: function(data) {
+118:                 result = data.result;
+119:               }
+120:             });
+121:             return(result);
+122:           }, {
+123:           #{(options[:loadurl].nil?? &quot;data: '#{options[:select_collection]}',&quot; : &quot;loadurl: '#{options[:loadurl]}',&quot;) if options[:type].to_s=='select'}
+124:           type    : '#{options[:type]}',
+125:           #{&quot;rows   : '#{options[:rows]}',&quot; if options[:type].to_s == 'text'}
+126:           tooltip   : ' #{t('jeditable.tooltip')}',
+127:           placeholder: '#{t('jeditable.tooltip')}',
+128:           style     : #{options[:style] || &quot;'display: inline;'&quot;},
+129:           #{submit}
+130:           onedit    : function() {
+131:             $(this).addClass('editing');
+132:           }
+133:         });
+134:       });
+135:       )</span>
+136:     <span class="ruby-keyword kw">end</span>
+137:     <span class="ruby-identifier">output</span>
+138:   <span class="ruby-keyword kw">end</span>
+</pre>
+          </div>
+        </div>
+      </div>
+
+      <div id="method-M000060" class="method-detail">
+        <a name="M000060"></a>
+
+        <div class="method-heading">
+          <a href="#M000060" class="method-signature">
+          <span class="method-name">message_widget</span><span class="method-args">(opts)</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+          <p><a class="source-toggle" href="#"
+            onclick="toggleCode('M000060-source');return false;">[Source]</a></p>
+          <div class="method-source-code" id="M000060-source">
+<pre>
+    <span class="ruby-comment cmt"># File app/helpers/application_helper.rb, line 25</span>
+25:   <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">message_widget</span>(<span class="ruby-identifier">opts</span>)
+26: <span class="ruby-value str">&quot;&lt;div class=\&quot;ui-widget\&quot;&gt;\n&lt;div class=\&quot;ui-state-\#{opts[:state]} ui-corner-all\&quot; style=\&quot;padding: 0 .7em;\&quot;&gt;\n&lt;p&gt;&lt;span class=\&quot;ui-icon ui-icon-\#{opts[:icon]}\&quot; style=\&quot;float: left; margin-right: .3em;\&quot;&gt;&lt;/span&gt;\n&lt;strong&gt;Alert:&lt;/strong&gt; \#{opts[:message]}.&lt;/p&gt;\n&lt;/div&gt;\n&lt;/div&gt;\n&quot;</span>
+27:   <span class="ruby-keyword kw">end</span>
+</pre>
+          </div>
+        </div>
+      </div>
+
+      <div id="method-M000058" class="method-detail">
+        <a name="M000058"></a>
+
+        <div class="method-heading">
+          <a href="#M000058" class="method-signature">
+          <span class="method-name">notice_widget</span><span class="method-args">(message)</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+          <p><a class="source-toggle" href="#"
+            onclick="toggleCode('M000058-source');return false;">[Source]</a></p>
+          <div class="method-source-code" id="M000058-source">
+<pre>
+    <span class="ruby-comment cmt"># File app/helpers/application_helper.rb, line 14</span>
+14:   <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">notice_widget</span>(<span class="ruby-identifier">message</span>)
+15:     <span class="ruby-keyword kw">return</span> <span class="ruby-keyword kw">if</span> <span class="ruby-identifier">message</span>.<span class="ruby-identifier">nil?</span>
+16:     <span class="ruby-identifier">message_widget</span>(<span class="ruby-identifier">:icon</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-value str">'info'</span>, <span class="ruby-identifier">:state</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-value str">'highlight'</span>, <span class="ruby-identifier">:label</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-value str">'Hey!'</span>, <span class="ruby-identifier">:message</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-identifier">message</span>)
+17:   <span class="ruby-keyword kw">end</span>
+</pre>
+          </div>
+        </div>
+      </div>
+
+      <div id="method-M000056" class="method-detail">
+        <a name="M000056"></a>
+
+        <div class="method-heading">
+          <a href="#M000056" class="method-signature">
+          <span class="method-name">show_field</span><span class="method-args">(object_name,attribute_name,object,other_options)</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+          <p><a class="source-toggle" href="#"
+            onclick="toggleCode('M000056-source');return false;">[Source]</a></p>
+          <div class="method-source-code" id="M000056-source">
+<pre>
+   <span class="ruby-comment cmt"># File app/helpers/application_helper.rb, line 4</span>
+4:   <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">show_field</span>(<span class="ruby-identifier">object_name</span>,<span class="ruby-identifier">attribute_name</span>,<span class="ruby-identifier">object</span>,<span class="ruby-identifier">other_options</span>)
+5:     <span class="ruby-identifier">options</span> = <span class="ruby-identifier">other_options</span>.<span class="ruby-identifier">merge</span>({<span class="ruby-identifier">:object</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-identifier">object</span>})
+6:     <span class="ruby-identifier">can?</span>(<span class="ruby-identifier">:update</span>, <span class="ruby-identifier">object</span>)<span class="ruby-operator">?</span> <span class="ruby-identifier">jeditable_field</span>(<span class="ruby-identifier">object_name</span>,<span class="ruby-identifier">attribute_name</span>,<span class="ruby-identifier">options</span>) <span class="ruby-operator">:</span> <span class="ruby-identifier">object</span>.<span class="ruby-identifier">send</span>(<span class="ruby-identifier">attribute_name</span>)
+7:   <span class="ruby-keyword kw">end</span>
+</pre>
+          </div>
+        </div>
+      </div>
+
+      <div id="method-M000057" class="method-detail">
+        <a name="M000057"></a>
+
+        <div class="method-heading">
+          <a href="#M000057" class="method-signature">
+          <span class="method-name">success_widget</span><span class="method-args">(message)</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+          <p><a class="source-toggle" href="#"
+            onclick="toggleCode('M000057-source');return false;">[Source]</a></p>
+          <div class="method-source-code" id="M000057-source">
+<pre>
+    <span class="ruby-comment cmt"># File app/helpers/application_helper.rb, line 9</span>
+ 9:   <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">success_widget</span>(<span class="ruby-identifier">message</span>)
+10:     <span class="ruby-keyword kw">return</span> <span class="ruby-keyword kw">if</span> <span class="ruby-identifier">message</span>.<span class="ruby-identifier">nil?</span>
+11:     <span class="ruby-identifier">message_widget</span>(<span class="ruby-identifier">:icon</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-value str">'check'</span>, <span class="ruby-identifier">:state</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-value str">'highlight'</span>, <span class="ruby-identifier">:label</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-value str">'OK'</span>, <span class="ruby-identifier">:message</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-identifier">message</span>)
+12:   <span class="ruby-keyword kw">end</span>
+</pre>
+          </div>
+        </div>
+      </div>
+
+
+    </div>
+
+
+  </div>
+
+
+<div id="validator-badges">
+  <p><small><a href="http://validator.w3.org/check/referer">[Validate]</a></small></p>
+</div>
+
+</body>
+</html>
