@@ -4,7 +4,7 @@ class GoalsController < ApplicationController
   before_filter :get_goal, :except => [:index, :year_plan, :new, :create, :overdue]
   before_filter :build_goal, :only => [:new, :create]
 
-  authorize_resource :except => :year_plan
+  authorize_resource :except => [:year_plan, :overdue]
 
   # GET /goals
   # GET /goals.xml
@@ -21,6 +21,9 @@ class GoalsController < ApplicationController
   end
 
   def overdue
+    authorize! :read, Goal
+
+
     @goals = Goal.visible_for(current_user).close_to_due_date.all
     @goals.sort!{|a,b| a.id_number <=> b.id_number}
 
