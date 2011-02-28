@@ -49,6 +49,10 @@ es:
       create_responsable_at: "Si no esta el responsable agréguelo en %{people}."
     table:
       subtotal: "Subtotales"
+      overdue_tasks: "Estos objetivos ya han pasado de su fecha límite y aún no han sido completados."
+    overdue:
+      title: "Alerta sobre estos objetivos"
+      explain: "Estos objetivos estan retrasados o cerca de su fecha límite."
   goal:
     labels:
       responsable: "Responsable"
@@ -68,6 +72,7 @@ es:
     institution: "Federaciones"
     people: "Personas"
     year_plan: "Plan anual"
+    overdue_goals: "Objetivos vencidos"
   followup:
     labels:
       valid_on: "Fecha"
@@ -278,6 +283,7 @@ es:
         control_item: "Item de control"
         responsable: "Responsable"
         due_on: "Fecha límite"
+        completed: "Completada"
       aktion:
         what: "Qué"
         how: "Cómo"

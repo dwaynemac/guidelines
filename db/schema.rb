@@ -9,7 +9,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20110211224829) do
+ActiveRecord::Schema.define(:version => 20110228142137) do
 
   create_table "aktions", :force => true do |t|
     t.integer  "goal_id"
@@ -62,6 +62,7 @@ ActiveRecord::Schema.define(:version => 20110211224829) do
     t.integer  "order_number"
     t.integer  "incidence"
     t.integer  "institution_id"
+    t.boolean  "completed"
   end
 
   create_table "institutions", :force => true do |t|

@@ -9,6 +9,10 @@
   .not-my-goal {
       font-size: 0.75em;
   }
+
+  .overdue {
+      background-color: red;
+  }
 </style>
 
 <table id="goals" border="1">
@@ -22,7 +26,8 @@
   </tr>
 
   <% goals.each do |goal| %>
-    <tr <%="class='not-my-goal'" if (!current_user.institution_id.nil? && goal.institution_id != current_user.institution_id)%>>
+    <%- @overdue_goal = true if goal.overdue? -%>
+    <tr class="<%="not-my-goal" if (!current_user.institution_id.nil? && goal.institution_id != current_user.institution_id)%> <%= "overdue" if goal.overdue? %>">
       <td><%= h link_to_if(can?(:read, goal),goal.id_number,goal) %></td>
       <td><%=h goal.institution.try :name %></td>
       <td><%= can?(:update, goal)? jeditable_field(:goal, :objective, :object => goal ) : goal.objective %></td>
@@ -50,3 +55,9 @@
     <%- end -%>
   <%- end -%>
 </table>
+
+<%- if @overdue_goal -%>
+  <p class="overdue">
+    <%= t('.overdue_tasks') %>
+  </p>
+<%- end -%>

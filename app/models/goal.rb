@@ -7,6 +7,12 @@ class Goal < ActiveRecord::Base
       {:conditions => ["institution_id is null or institution_id = ?", user.institution.id]} unless user.institution.nil?
     end }
 
+  named_scope :close_to_due_date, { :conditions => ["NOT completed AND due_on < ?", Time.zone.today+1.month]}
+  named_scope :overdue, { :conditions => ["NOT completed AND due_on < ?",Time.zone.today]}
+  def overdue?
+    (!self.completed? && (self.due_on < Time.zone.today))
+  end
+
   acts_as_tree(:foreign_key => :goal_id, :order => :order_number)
 
   validates_numericality_of(:order_number)
@@ -21,6 +27,7 @@ class Goal < ActiveRecord::Base
   has_many(:followups, :dependent => :destroy)
 
   validate :either_goals_or_actions
+
 
   # TODO for larger databases id_number should be stored on DB
   def id_number

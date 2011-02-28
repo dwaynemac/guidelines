@@ -1,7 +1,7 @@
 class GoalsController < ApplicationController
   before_filter :set_scope
 
-  before_filter :get_goal, :except => [:index, :year_plan, :new, :create]
+  before_filter :get_goal, :except => [:index, :year_plan, :new, :create, :overdue]
   before_filter :build_goal, :only => [:new, :create]
 
   authorize_resource :except => :year_plan
@@ -17,6 +17,15 @@ class GoalsController < ApplicationController
     respond_to do |format|
       format.html # index.html.erb
       format.xml  { render :xml => @goals }
+    end
+  end
+
+  def overdue
+    @goals = Goal.visible_for(current_user).close_to_due_date.all
+    @goals.sort!{|a,b| a.id_number <=> b.id_number}
+
+    respond_to do |format|
+      format.html
     end
   end
 
@@ -77,6 +86,9 @@ class GoalsController < ApplicationController
   # PUT /goals/1
   # PUT /goals/1.xml
   def update
+    unless params[:goal].try(:fetch,:due_on,nil).nil?
+      params[:goal][:due_on] = Date.parse(params[:goal][:due_on])
+    end
     respond_to do |format|
       if @goal.update_attributes(params[:goal])
         format.json { render :json => jeditable_result(@goal,true) }
@@ -131,9 +143,15 @@ class GoalsController < ApplicationController
   def build_goal
 
     # for setting date from text_field'
-    unless params[:goal].try(:fetch,:due_on,nil).nil?
-      params[:goal][:due_on] = Date.parse(params[:goal][:due_on])
+    begin
+      unless params[:goal].try(:fetch,:due_on,nil).nil?
+        params[:goal][:due_on] = Date.parse(params[:goal][:due_on])
+      end
+    rescue ArgumentError => e
+      params[:goal][:due_on]= nil
+      flash[:error] = e
     end
+
     @goal = (@scope.is_a?(Class))? @scope.new(params[:goal]) : @scope.build(params[:goal])
   end
 

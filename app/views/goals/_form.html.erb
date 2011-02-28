@@ -3,7 +3,9 @@
   <%- if can? :manage, Goal -%>
     <%= f.inputs :order_number %>
   <%- end -%>
-  <%= f.inputs :objective, :value, :control_item -%>
-  <%= f.input :responsable, :collection => @people, :hint => t('goals.form.create_responsable_at', :people => Person.human_name.pluralize) %>
+  <%= f.input :objective %>
+  <%= f.inputs :value, :control_item -%>
+  <%= f.input :responsable, :collection => @people, :hint => t('goals.form.create_responsable_at', :people => link_to(Person.human_name.pluralize,people_url)).html_safe %>
   <%= f.input(:due_on, :as => :string, :input_html => {:class => 'datepicker'}) %>
+  <%= f.input :completed %>
 <%- end -%>
