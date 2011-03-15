@@ -36,9 +36,9 @@
       <td><%= can?(:update, goal)? jeditable_field(:goal, :control_item, :object => goal) : goal.control_item %></td>
       <td><%= can?(:update, goal)? jeditable_field(:goal, :value, :object => goal ) : goal.value %> @ <%= l goal.due_on %></td>
       <td><%= h goal.responsable.try :name %></td>
-      <td><%= h link_to_if(can?(:read, goal),t('detail'),goal) %></td>
       <td><%= can?(:update,goal)? jeditable_field(:goal, :status, :object => goal, :type => 'select', :select_collection => "{'waiting':'waiting', 'in_progress':'in_progress', 'finished':'finished'}") : goal.status %></td>
       <td><%= can?(:update,goal)? jeditable_field(:goal, :progress, :object => goal) : goal.progress %></td>
+      <td><%= h link_to_if(can?(:read, goal),t('detail'),goal) %></td>
       <td><%= link_to( t('Edit'), edit_goal_path(goal)) if can? :update, goal %></td>
       <td><%= link_to(t('destroy'), goal_path(goal), :method => :delete, :confirm => t('confirm')) if can? :destroy, goal %></td>
     </tr>
