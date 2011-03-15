@@ -10,6 +10,8 @@
   <% f.inputs do  -%>
     <%= f.input :who, :collection => @people %>
     <%= f.inputs :what, :how, :why, :where, :begins_on, :ends_on %>
+    <%= f.inputs :status %>
+    <%= f.inputs :progress %>
   <%- end -%>
   <%- f.buttons do -%>
     <%= f.commit_button %>

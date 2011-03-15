@@ -47,6 +47,7 @@ es:
       title: "Nueva directriz"
     form:
       create_responsable_at: "Si no esta el responsable agréguelo en %{people}."
+      percentage_completed: "Nivel de progreso, en porcentaje"
     table:
       subtotal: "Subtotales"
       overdue_tasks: "Estos objetivos ya han pasado de su fecha límite y aún no han sido completados."

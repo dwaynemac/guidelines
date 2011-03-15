@@ -9,7 +9,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20110228142137) do
+ActiveRecord::Schema.define(:version => 20110315063346) do
 
   create_table "aktions", :force => true do |t|
     t.integer  "goal_id"
@@ -23,6 +23,8 @@ ActiveRecord::Schema.define(:version => 20110228142137) do
     t.datetime "created_at"
     t.datetime "updated_at"
     t.integer  "order_number"
+    t.integer  "progress",     :default => 0
+    t.string   "status",       :default => "waiting"
   end
 
   create_table "consumer_tokens", :force => true do |t|
@@ -62,7 +64,8 @@ ActiveRecord::Schema.define(:version => 20110228142137) do
     t.integer  "order_number"
     t.integer  "incidence"
     t.integer  "institution_id"
-    t.boolean  "completed"
+    t.integer  "progress",       :default => 0
+    t.string   "status",         :default => "waiting"
   end
 
   create_table "institutions", :force => true do |t|

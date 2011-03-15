@@ -54,6 +54,8 @@ AW
   #   <tt>format.json { render :json => jeditable_result(@transaction, true) }</tt> for success.
   #   <tt>format.json { render :json => jeditable_result(@transaction, false) }</tt> for failure.
   #
+  # Eg:
+  #  jeditable_field(:goal, :status, :object => goal, :type => 'select', :select_collection => "{'waiting':'waiting', 'in_progress':'in_progress', 'finished':'finished'}")
   def jeditable_field(object_name, field_name, options = {})
 
     options.reverse_merge!({:type => 'text', :rows => '1'})
@@ -119,7 +121,7 @@ AW
             });
             return(result);
           }, {
-          #{(options[:loadurl].nil?? "data: '#{options[:select_collection]}'," : "loadurl: '#{options[:loadurl]}',") if options[:type].to_s=='select'}
+          #{(options[:loadurl].nil?? "data: #{options[:select_collection]}," : "loadurl: '#{options[:loadurl]}',") if options[:type].to_s=='select'}
           type    : '#{options[:type]}',
           #{"rows   : '#{options[:rows]}'," if options[:type].to_s == 'text'}
           tooltip   : ' #{t('jeditable.tooltip')}',
