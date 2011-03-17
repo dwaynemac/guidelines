@@ -1,7 +1,7 @@
 <%- if can?(:read, comment) -%>
     <div>
       <p>
-        <b><%= comment.user.drc_user %></b> -
+        <b><%= comment.commentor_name %></b> -
         <%= l comment.created_at %>
         <%- if comment.updated? -%>
             <i>
