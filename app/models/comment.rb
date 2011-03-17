@@ -4,4 +4,10 @@ class Comment < ActiveRecord::Base
   belongs_to :user
 
   validates_presence_of :body
+
+  # @return true if Comment was modified after creation.
+  def updated?
+    time_tolerance = 2.minutes
+    return (self.created_at+time_tolerance < self.updated_at)
+  end
 end

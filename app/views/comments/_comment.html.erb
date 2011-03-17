@@ -1,7 +1,13 @@
 <%- if can?(:read, comment) -%>
     <div>
       <p>
-        <b><%= comment.user.drc_user %></b> - <%= l comment.created_at %>
+        <b><%= comment.user.drc_user %></b> -
+        <%= l comment.created_at %>
+        <%- if comment.updated? -%>
+            <i>
+              - <%= t('comments.last_updated') %>: <%= l comment.updated_at %>
+            </i>
+        <%- end -%>
       </p>
       <p>
         <%= can?(:update,comment)? jeditable_field(:comment,:body,:object => comment) : h(comment.body) %>
