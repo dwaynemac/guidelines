@@ -1,7 +1,7 @@
 class GoalsController < ApplicationController
   before_filter :set_scope
 
-  before_filter :get_goal, :except => [:index, :year_plan, :new, :create, :overdue]
+  before_filter :get_goal, :except => [:index, :year_plan, :new, :create, :overdue, :show_by_id_number]
   before_filter :build_goal, :only => [:new, :create]
 
   authorize_resource :except => [:year_plan, :overdue]
@@ -39,6 +39,16 @@ class GoalsController < ApplicationController
     respond_to do |format|
       format.html # show.html.erb
       format.xml  { render :xml => @goal }
+    end
+  end
+  def show_by_id_number
+    if params[:id_number].nil?
+      flash[:error] = t('goals.show_by_id_number.id_number_missing')
+      redirect_to goals_url
+    end
+    @goal = Goal.get_by_id_number(params[:id_number])
+    respond_to do |format|
+      format.html { render :action => :show }
     end
   end
 

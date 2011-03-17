@@ -39,3 +39,24 @@
   <%- end -%>
   <%= link_to t('Back'), goals_path %>
 </div>
+
+<div id="comments">
+  <h1><%= t('comments.title') %></h1>
+  <%- @goal.comments.each do |comment| -%>
+      <%= render :partial => 'comments/comment', :locals => {:comment => comment} %>
+  <%- end -%>
+  <%- if can?(:create, Comment => @goal) -%>
+      <%- semantic_form_for @goal.comments.new do |f| -%>
+          <% f.inputs do %>
+              <%= f.input :body, :input_html => { :size => "5x3"} %>
+              <%= f.input :commentable_id, :as => :hidden %>
+              <%= f.input :commentable_type, :as => :hidden %>
+              <%= f.input :user_id, :as => :hidden, :value => current_user.id %>
+          <%- end -%>
+
+          <%- f.buttons do -%>
+              <%= f.commit_button %>
+          <%- end -%>
+      <%- end -%>
+  <%- end -%>
+</div>

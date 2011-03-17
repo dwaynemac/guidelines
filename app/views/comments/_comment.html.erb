@@ -1,0 +1,15 @@
+<%- if can?(:read, comment) -%>
+    <div>
+      <p>
+        <b><%= comment.user.drc_user %></b> - <%= l comment.created_at %>
+      </p>
+      <p>
+        <%= can?(:update,comment)? jeditable_field(:comment,:body,:object => comment) : h(comment.body) %>
+      </p>
+      <%- if can?(:destroy, comment) -%>
+          <div>
+            <%= link_to_if can?(:destroy,comment), t('destroy'), comment, :method => :delete, :confirm => t('confirm_destroy') %>
+          </div>
+      <%- end -%>
+    </div>
+<%- end -%>

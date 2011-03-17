@@ -29,6 +29,11 @@ class Ability
     can :read, :all
     cannot :read, [User, Federation, Person]
 
+    # may only comment or read comments on goals/aktion to wich it has access
+    can [:read,:create], Comment do |comment|
+      can?(:read,comment.commentable)
+    end
+    can [:destroy,:update], Comment, :user_id => user.id
     
     can [:profile,:update], User, :id => user.id
 

@@ -3,6 +3,7 @@ class User < ActiveRecord::Base
     c.login_field = :drc_user
   end
 
+  has_many :comments
   belongs_to :institution, :class_name => "Federation"
 
   ROLES = %W(federation_responsable federation_president supervisor admin)

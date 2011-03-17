@@ -325,3 +325,5 @@ es:
   aktions:
     edit:
       title: "Editando acción"
+  comments:
+    title: "Comentarios"

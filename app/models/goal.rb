@@ -2,6 +2,7 @@ class Goal < ActiveRecord::Base
 
   STATUSES = %W(waiting in_progress finished)
 
+  has_many :comments, :as => :commentable
 
   before_validation :default_order
 
@@ -22,6 +23,8 @@ class Goal < ActiveRecord::Base
   acts_as_tree(:foreign_key => :goal_id, :order => :order_number)
 
   validates_numericality_of(:order_number)
+  validates_uniqueness_of(:order_number, :scope => :goal_id)
+
   validates_presence_of :objective, :value, :control_item, :due_on
 
   belongs_to :goal # parent goal
@@ -45,13 +48,28 @@ class Goal < ActiveRecord::Base
       if self.progress == 100
         self.status = "finished"
       end
-      if self.progress < 100
+      if self.progress < 100 && self.progress > 0
         self.status = "in_progress"
       end
     end
   end
 
-  # TODO for larger databases id_number should be stored on DB
+  # @returns goal whith given id_number
+  # @returns nil if goal not found.
+  def self.get_by_id_number(string)
+    order_numbers = string.split('.')
+
+    parent_id = nil
+    g = nil
+    order_numbers.each do |o|
+      g = Goal.first(:conditions => {:goal_id => parent_id, :order_number => o.to_i})
+      break if g.nil?
+      parent_id = g.id
+    end
+
+    return g
+  end
+
   def id_number
     self.ancestors_and_self.map{|g|g.order_number}.join('.')
   end
