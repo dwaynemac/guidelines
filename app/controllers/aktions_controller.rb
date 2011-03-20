@@ -29,6 +29,7 @@ class AktionsController < ApplicationController
   # GET /aktions/new
   # GET /aktions/new.xml
   def new
+    @people = @goal.try(:institution).nil?? Person.all : @goal.institution.people.all
     respond_to do |format|
       format.html # new.html.erb
       format.xml  { render :xml => @aktion }

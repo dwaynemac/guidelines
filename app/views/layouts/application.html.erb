@@ -22,7 +22,7 @@
         <%= link_to(t('navbar.people'), people_url) if can? :read, Person %>
       </span>
       <span style="float:right;">
-        <%= link_to t('user.profile'), profile_user_path(current_user) if can? :profile, current_user %> -
+        <%- if can? :profile, current_user -%><a href="#" id="change_locale_link"><%= t('change_locale') %></a><%- end -%>
         <%= current_user.role || "-" %> |
         <%= current_institution.try(:name) %>
       </span>
@@ -33,6 +33,23 @@
       <%= alert_widget(flash[:error]) %>
     </div>
     <%= yield %>
+    <div id="footer">
+      <%- if can? :profile, current_user -%>
+      <div id="locale_form" style="background-color:#adff2f;">
+        <% semantic_form_for current_user, :method => :put do |f| %>
+            <%= f.input(:locale, :label => "", :collection => LOCALES, :include_blank => false) %>
+            <%= f.commit_button t('change_locale') %>
+        <%- end -%>
+      </div>
+      <script type="text/javascript">
+        $('#locale_form').hide();
+        $('#change_locale_link').click(function(){
+            $('#locale_form').show();
+            $('#locale_form').highlight();
+        });
+      </script>
+      <%- end -%>
+    </div>
   </div>
 </body>
 </html>

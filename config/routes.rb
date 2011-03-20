@@ -8,6 +8,7 @@ ActionController::Routing::Routes.draw do |map|
 
   map.resources :federations
   map.resources :people
+  map.resources :followups
 
   map.resources :oauth_consumers,:member=>{:callback=>:get}
 

@@ -60,9 +60,11 @@ class FollowupsController < ApplicationController
 
     respond_to do |format|
       if @followup.update_attributes(params[:followup])
+        format.json { render :json => jeditable_result(@followup, true)}
         format.html { redirect_to(@goal, :notice => t('followups.update.success')) }
         format.xml  { head :ok }
       else
+        format.json { render :json => jeditable_result(@followup, false)}
         format.html { render :action => "edit" }
         format.xml  { render :xml => @followup.errors, :status => :unprocessable_entity }
       end
@@ -74,6 +76,12 @@ class FollowupsController < ApplicationController
   def destroy
     @followup.destroy
 
+    if @goal
+      back_to= @goal
+    else
+      back_to= root_url
+    end
+
     respond_to do |format|
       format.html { redirect_to(followups_url) }
       format.xml  { head :ok }
@@ -82,8 +90,12 @@ class FollowupsController < ApplicationController
 
   private
   def set_scope
-    @goal = Goal.find(params[:goal_id])
-    @scope = @goal.followups
+    if params[:goal_id]
+      @goal = Goal.find(params[:goal_id])
+      @scope = @goal.followups
+    else
+      @scope = Followup
+    end
   end
 
   def set_followup

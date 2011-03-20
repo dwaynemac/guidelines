@@ -8,7 +8,8 @@
 
 <%- semantic_form_for scope do |f| -%>
   <%- f.inputs do -%>
-    <%= f.inputs :what, :how, :why, :where, :who-%>
+    <%= f.inputs :what, :how, :why, :where -%>
+    <%= f.input :who, :collection => @people %>
     <%= f.input :begins_on, :as => :string, :input_html => {:class => 'datepicker'} %>
     <%= f.input :ends_on, :as => :string, :input_html => {:class => 'datepicker'} %>
   <%- end -%>

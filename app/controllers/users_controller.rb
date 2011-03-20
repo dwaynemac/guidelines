@@ -35,6 +35,7 @@ class UsersController < ApplicationController
   def update
     success = @user.update_attributes(params[:user])
     respond_to do |format|
+      format.json { render :json => jeditable_result(@user,success) }
       format.html do
         if success
           flash[:notice] = t('users.update.success')

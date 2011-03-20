@@ -88,3 +88,4 @@ en:
       succes: "aktion was successfully created."
     update:
       success: "Action was successfully updated."
+  change_locale: "Change language"
