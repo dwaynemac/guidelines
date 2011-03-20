@@ -36,6 +36,8 @@ class GoalsController < ApplicationController
   # GET /goals/1.xml
   def show
 
+    @page_title = "#{@goal.id_number} #{@goal.objective}"
+
     respond_to do |format|
       format.html # show.html.erb
       format.xml  { render :xml => @goal }
