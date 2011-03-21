@@ -8,7 +8,6 @@
 
 <ul>
   <%- @roots.each do |root| -%>
-      <%= render :partial => 'li', :locals => {:goal => root} %>
       <%- unless root.children.for_institution(current_user.institution_id).empty? -%>
         <%= render :partial => 'children', :locals => { :goals => root.children.for_institution(current_user.institution_id)} %>
       <%- end -%>
