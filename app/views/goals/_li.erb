@@ -1,0 +1,4 @@
+<li>
+  <b><%= link_to goal.id_number, diretriz_url(:id_number => goal.id_number) %>:</b>
+  <%= link_to_if(can?(:read,goal),goal.objective,goal) %> -- <%= can?(:update, goal)? jeditable_field(:goal, :value, :object => goal ) : goal.value %> <%= can?(:update, goal)? jeditable_field(:goal, :control_item, :object => goal) : goal.control_item %> @ <%= l goal.due_on %> -- <%= link_to( t('Edit'), edit_goal_path(goal)) if can? :update, goal %>
+</li>

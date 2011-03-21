@@ -1,0 +1,9 @@
+<ul>
+  <%- goals.each do |goal| -%>
+      <%= render :partial => 'li', :locals => {:goal => goal} %>
+      <%- has_childs = !goal.children.for_institution(current_user.institution_id).empty? -%>
+      <%- if has_childs  -%>
+        <%= render :partial => 'children', :locals => { :goals => goal.children.for_institution(current_user.institution_id)} %>
+      <%- end -%>
+  <%- end -%>
+</ul>

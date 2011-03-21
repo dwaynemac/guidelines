@@ -14,6 +14,7 @@
   <div id="container">
     <div id="navbar">
       <span>
+        <%= link_to(t('navbar.tree'), tree_goals_url) if can?(:see_tree, Goal) %>
         <%= link_to(t('navbar.goals'), goals_url) if can? :read, Goal %>
         <%= link_to(t('navbar.overdue_goals'), overdue_goals_url) if can? :read, Goal %>
         <%= link_to(t('navbar.year_plan'), year_plan_goals_url) if can? :see, :year_plan %>

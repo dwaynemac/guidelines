@@ -1,10 +1,10 @@
 class GoalsController < ApplicationController
   before_filter :set_scope
 
-  before_filter :get_goal, :except => [:index, :year_plan, :new, :create, :overdue, :show_by_id_number]
+  before_filter :get_goal, :except => [:index, :year_plan, :new, :create, :overdue, :show_by_id_number, :tree]
   before_filter :build_goal, :only => [:new, :create]
 
-  authorize_resource :except => [:year_plan, :overdue]
+  authorize_resource :except => [:year_plan, :overdue,:tree]
 
   # GET /goals
   # GET /goals.xml
@@ -18,6 +18,15 @@ class GoalsController < ApplicationController
       format.html # index.html.erb
       format.xml  { render :xml => @goals }
     end
+  end
+
+  def tree
+    authorize! :see_tree, Goal
+
+    redirect_to root_url, :flash => {:notice => "need institution"} if current_user.institution.nil?
+
+    @roots = Goal.roots
+
   end
 
   def overdue

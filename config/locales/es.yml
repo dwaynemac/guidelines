@@ -54,6 +54,8 @@ es:
     overdue:
       title: "Alerta sobre estos objetivos"
       explain: "Estos objetivos estan retrasados o cerca de su fecha límite."
+    tree:
+      title: "Mis directrices"
   goal:
     labels:
       responsable: "Responsable"
@@ -76,6 +78,7 @@ es:
     people: "Personas"
     year_plan: "Plan anual"
     overdue_goals: "Objetivos vencidos"
+    tree: "Mis Directricez"
   followup:
     labels:
       valid_on: "Fecha"

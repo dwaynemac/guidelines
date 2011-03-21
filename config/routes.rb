@@ -4,7 +4,7 @@ ActionController::Routing::Routes.draw do |map|
   map.diretriz "/diretriz/:id_number", :controller => :goals, :action => :show_by_id_number, :requirements => { :id_number => /.*/ }
 
   map.resources :goals, :has_many => [:goals, :aktions, :followups],
-          :collection => { :year_plan => :get, :overdue => :get }
+          :collection => { :year_plan => :get, :overdue => :get, :tree => :get }
 
   map.resources :federations
   map.resources :people

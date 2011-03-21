@@ -41,6 +41,7 @@ class Ability
     if user.role == "federation_president" || user.role == "federation_responsable"
       # goal
       can :create, Goal
+      can :see_tree, Goal
 
       can :add_subgoals, Goal do |goal|
         goal.institution == user.institution_id || goal.goal.try(:goal).nil?

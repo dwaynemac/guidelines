@@ -6,6 +6,7 @@ class Goal < ActiveRecord::Base
 
   before_validation :default_order
 
+  named_scope :for_institution, lambda {|institution_id| { :conditions => {:institution_id => institution_id} }}
   named_scope :visible_for, lambda { |user|
     unless %W(admin supervisor).include?(user.role)
       {:conditions => ["institution_id is null or institution_id = ?", user.institution.id]} unless user.institution.nil?
@@ -13,6 +14,7 @@ class Goal < ActiveRecord::Base
 
   named_scope :close_to_due_date, { :conditions => ["status<>'finished' AND due_on < ?", Time.zone.today+1.month]}
   named_scope :overdue, { :conditions => ["NOT completed AND due_on < ?",Time.zone.today]}
+
   def overdue?
     (!self.completed? && (self.due_on < Time.zone.today))
   end
