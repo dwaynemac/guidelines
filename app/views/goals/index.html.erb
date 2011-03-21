@@ -1,5 +1,9 @@
 <h1><%= t('.title') %></h1>
 
+<p>
+  <%= link_to t('.download_csv'), formatted_goals_url(:format => :csv) %>
+</p>
+
 <%= render :partial => 'table', :locals => { :goals => @goals } %>
 
 <br />

@@ -1,0 +1,26 @@
+<%= FasterCSV.generate(:col_sep => ";") do |csv|
+    csv << [
+             "",
+             t('goal.labels.institution'),
+             t('goal.labels.objective'),
+             t('goal.labels.value'),
+             t('goal.labels.control_item'),
+             t('goal.labels.due_on'),
+             t('goal.labels.responsable'),
+             t('goal.labels.status'),
+             t('goal.labels.progress')
+    ]
+    @goals.each do |goal|
+        csv << [
+            goal.id_number,
+            goal.institution.try(:name),
+            goal.objective,
+            goal.value,
+            goal.control_item,
+            l(goal.due_on),
+            goal.responsable.try(:name),
+            goal.status,
+            goal.progress
+        ]
+    end
+end -%>

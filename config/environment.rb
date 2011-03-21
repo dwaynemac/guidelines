@@ -19,6 +19,7 @@ Rails::Initializer.run do |config|
   config.gem 'will_paginate'
   config.gem 'cancan'
   config.gem 'hoptoad_notifier'
+  config.gem 'fastercsv'
 
 #  config.gem 'nokogiri'
 

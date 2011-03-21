@@ -10,13 +10,18 @@ class GoalsController < ApplicationController
   # GET /goals.xml
   def index
     @goals = Goal.roots
-
-    # TODO for larger databases id_number, should be cached on DB for faster sorting?
     @goals.sort!{|a,b| a.id_number <=> b.id_number}
 
     respond_to do |format|
-      format.html # index.html.erb
-      format.xml  { render :xml => @goals }
+      format.html do
+        @goals = Goal.roots
+        @goals.sort!{|a,b| a.id_number <=> b.id_number}
+      end
+      format.csv do
+        @goals = Goal.all
+        @goals.sort!{|a,b| a.id_number <=> b.id_number}
+        render :layout => false
+      end
     end
   end
 

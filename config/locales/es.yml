@@ -37,6 +37,7 @@ es:
     index:
       new_goal: "Nueva directriz"
       title: "Directrices de la Red"
+      download_csv: "Descargar a excel todas las directrices"
     show:
       title: "Desoblamiento de la directriz"
     edit:
