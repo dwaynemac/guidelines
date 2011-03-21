@@ -83,7 +83,7 @@ class FollowupsController < ApplicationController
     end
 
     respond_to do |format|
-      format.html { redirect_to(followups_url) }
+      format.html { redirect_to(back_to) }
       format.xml  { head :ok }
     end
   end
