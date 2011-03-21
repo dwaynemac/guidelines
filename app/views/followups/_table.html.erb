@@ -8,7 +8,7 @@
     <tr>
       <td><%= l followup.valid_on %></td>
       <td><%= can?(:update,followup)? jeditable_field(:followup,:value,:object => followup) : "followup.value" %> <%=h goal.control_item %></td>
-      <td><%= link_to(t('destroy'),goal_followup_path([@goal,followup]),:confirm => t('confirm_destroy'),:method => :delete) if can? :delete, followup %></td>
+      <td><%= link_to(t('destroy'),goal_followup_path(:goal_id => @goal.id, :id => followup.id),:confirm => t('confirm_destroy'),:method => :delete) if can? :delete, followup %></td>
     </tr>
   <%- end -%>
 </table>
